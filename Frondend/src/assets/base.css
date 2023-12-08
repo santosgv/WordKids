@@ -1,0 +1,16 @@
+:root {
+  --azul-celeste: #1E90FF;
+  --amarelo-sol:#f49e12;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
