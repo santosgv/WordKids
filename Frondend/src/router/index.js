@@ -23,7 +23,7 @@ const router = createRouter({
       component: DesenhosView
     },
     {
-      path:'/desenho',
+      path:'/desenho/:id',
       name:'desenho',
       component: Desenho
     }

@@ -3,10 +3,22 @@
     <div class="Desenho">
         <div class="text-center">
       <h1>This is an Desenho</h1>
-      <img src="https://img.freepik.com/fotos-gratis/foto-de-grande-angular-de-uma-unica-arvore-crescendo-sob-um-ceu-nublado-durante-um-por-do-sol-cercado-por-grama_181624-22807.jpg?t=st=1702257748~exp=1702258348~hmac=1cce0ddf747d21d509eb5cbb2e782ff8687ed9bd469cd3a73e2d40ccfa6a2bba" class="img-fluid" alt="...">
-    
+  <a href="http://127.0.0.1:8000/imprimir/3" download="Currículo - Vitor Gomes Dev/Analyst" class="down-cv">Download</a>
+      <img src="http://127.0.0.1:8000/media/Imagens/img-fundo-software.jpg" class="img-fluid" alt="...">
+          {{ $route.params.id }} aki
+          <button @click="showPostId" >mostrar id</button>
     </div>
+    <p><RouterLink to="/desenhos">&lt; Back</RouterLink></p>
     </div>
   </template>
   
+  <script setup>
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
+
+const showPostId = () =>{
+  alert(`Esse id e :${route.params.id}`)
+}
+</script>
   
