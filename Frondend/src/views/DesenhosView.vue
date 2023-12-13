@@ -3,13 +3,13 @@
     <div class="text-center row fluid-content">
       <h1>This is an Desenho</h1>
       <!-- Utilize v-for para percorrer os dados da API e renderizar os cards -->
-      <div v-for="desenho in desenhos" :key="desenho.id" class="card text-center mb-3" style="width: 18rem;">
-        <div class="card-body">
-          <!-- Utilize os dados dinâmicos para preencher o conteúdo dos cards -->
+      <div v-for="desenho in desenhos" :key="desenho.id" class="card text-center mb-3" style="width: 15rem;">
+        <div class="card-body text-center">
+          <img :src="desenho.arquivo" class="img-fluid tmg" alt="previa">
           <h5 class="card-title">{{ desenho.nome }}</h5>
           <p class="card-text">{{ desenho.descricao }}</p>
           <!-- Utilize RouterLink para criar links dinâmicos -->
-          <RouterLink :to="`http://127.0.0.1:8000/api/imagens/${desenho.id}/`"><a class="nav-link">Link</a></RouterLink>
+          <RouterLink :to="`desenho/${desenho.id}/`"><a class="nav-link">Link</a></RouterLink>
         </div>
       </div>
     </div>
@@ -31,3 +31,14 @@ onMounted(async () => {
   desenhos.value = data
 })
 </script>
+
+<style scoped>
+.card {
+  margin-right: 5px;
+}
+
+.tmg {
+  max-height: 150px; /* Ajuste conforme necessário */
+  width: auto;
+}
+</style>
