@@ -13,6 +13,14 @@
   box-sizing: content-box;
 }
 
+.navbar-color{
+  background-color: var(--azul-celeste);
+}
+
+a {
+  text-decoration: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;

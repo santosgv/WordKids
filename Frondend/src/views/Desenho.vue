@@ -18,7 +18,7 @@
       <p>{{ desenho.afiliado }}</p>
       <a :href="`http://127.0.0.1:8000/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="down-cv">Download</a>
     </div>
-    <p><RouterLink to="/desenhos">&lt; Back</RouterLink></p>
+    <p><RouterLink to="/">&lt; Back</RouterLink></p>
   </div>
 </template>
 

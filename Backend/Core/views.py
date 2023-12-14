@@ -1,6 +1,6 @@
 from django.http import FileResponse
-from django.shortcuts import render
-from .models import Imagem
+from rest_framework.response import Response
+from .models import Imagem,Categoria
 from .serializers import ImagemSerializer,CategoriaSerializer
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
@@ -8,6 +8,7 @@ import io
 import os
 from django.conf import settings
 from rest_framework import viewsets,status
+from rest_framework.decorators import action
 
 
 class ImagemViewSet(viewsets.ModelViewSet):
@@ -15,8 +16,18 @@ class ImagemViewSet(viewsets.ModelViewSet):
     serializer_class = ImagemSerializer
 
 class CategoriaViewSet(viewsets.ModelViewSet):
-    queryset = Imagem.objects.all()
+    queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
+
+    @action(detail=True, methods=['get'])
+    def categoria_desenho(self, request, pk=None):
+        try:
+            categoria = self.get_object()
+            desenhos = categoria.imagem_set.all()  # Use 'imagem_set' para acessar os desenhos associados à categoria
+            serializer = ImagemSerializer(desenhos, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 def imprimir(request,id):
         try:

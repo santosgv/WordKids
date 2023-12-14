@@ -18,8 +18,8 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path:'/desenhos',
-      name: 'desenhos',
+      path:'/categoria/:id',
+      name: 'categoria',
       component: DesenhosView
     },
     {
