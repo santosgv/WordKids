@@ -9,16 +9,14 @@
 <template>
   <div class="Desenho">
     <div class="text-center">
-      <h1>This is an Desenho</h1>
-      <p>{{ desenho.categoria }}</p>
-      <p>{{ desenho.data_upload }}</p>
+      <h1>Desenho</h1>
+      <p class="text-center"><RouterLink to="/">&lt; Back</RouterLink></p>
       <img :src="desenho.arquivo" class="img-fluid tamanho" fluid alt="Fluid image">
       <p>{{ desenho.nome }}</p>
       <p>{{ desenho.descricao }}</p>
       <p>{{ desenho.afiliado }}</p>
       <a :href="`http://127.0.0.1:8000/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="down-cv">Download</a>
     </div>
-    <p><RouterLink to="/">&lt; Back</RouterLink></p>
   </div>
 </template>
 

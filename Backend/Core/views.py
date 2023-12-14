@@ -7,7 +7,7 @@ from reportlab.lib.pagesizes import letter
 import io
 import os
 from django.conf import settings
-from rest_framework import viewsets,status
+from rest_framework import viewsets,status,pagination
 from rest_framework.decorators import action
 
 
@@ -24,7 +24,7 @@ class CategoriaViewSet(viewsets.ModelViewSet):
         try:
             categoria = self.get_object()
             desenhos = categoria.imagem_set.all()  # Use 'imagem_set' para acessar os desenhos associados à categoria
-            serializer = ImagemSerializer(desenhos, many=True)
+            serializer = ImagemSerializer(desenhos, many=True, context={'request': request})
             return Response(serializer.data)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

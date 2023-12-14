@@ -1,7 +1,7 @@
 <template>
-    <div class="Desenho">
-      <div class="text-center row fluid-content">
-        <h1>Mundo Colorido Kids</h1>
+    <div class="Desenho container-fluid">
+      <h1 class="text-center">Por Categoria</h1>
+      <div class="row row justify-content-center">
         
         <div v-for="desenho in desenhos" :key="desenho.id" class="card text-center mb-3" style="width: 15rem;">
           <div class="card-body text-center">
@@ -32,7 +32,7 @@ const fetchDesenhos = async () => {
   const data = await response.json();
 
   // Atualize a variável de estado com os dados da API
-  desenhos.value = data;
+  desenhos.value = data
 };
 
 onMounted(fetchDesenhos);
