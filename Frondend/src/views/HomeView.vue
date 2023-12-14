@@ -9,7 +9,7 @@
           <h5 class="card-title">{{ desenho.nome }}</h5>
           <p class="card-text">{{ desenho.descricao }}</p>
         
-          <RouterLink :to="`desenho/${desenho.id}/`"><a class="nav-link">Link</a></RouterLink>
+          <RouterLink :to="`/desenho/${desenho.id}/`"><a class="nav-link">Link</a></RouterLink>
         </div>
       </div>
     </div>

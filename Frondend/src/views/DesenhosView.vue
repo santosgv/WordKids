@@ -9,7 +9,7 @@
             <h5 class="card-title">{{ desenho.nome }}</h5>
             <p class="card-text">{{ desenho.descricao }}</p>
           
-            <RouterLink :to="`desenho/${desenho.id}/`"><a class="nav-link">Link</a></RouterLink>
+            <RouterLink :to="`/desenho/${desenho.id}/`"><a class="nav-link">Link</a></RouterLink>
           </div>
         </div>
       </div>
@@ -17,14 +17,15 @@
   </template>
   
 <script setup>
-import { ref, onMounted } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, onMounted, watch } from 'vue'
+import { RouterLink,useRoute } from 'vue-router'
 
+
+const route = useRoute();
 const desenhos = ref([])
 
-onMounted(async () => {
-  const categoriaId = 1; // Substitua pelo valor da categoria desejada
-  const apiUrl = `http://localhost:8000/api/categorias/${categoriaId}/categoria_desenho/`;
+const fetchDesenhos = async () => {
+  const apiUrl = `http://localhost:8000/api/categorias/${route.params.id}/categoria_desenho/`;
 
   // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
   const response = await fetch(apiUrl);
@@ -32,7 +33,11 @@ onMounted(async () => {
 
   // Atualize a variável de estado com os dados da API
   desenhos.value = data;
-});
+};
+
+onMounted(fetchDesenhos);
+watch(() => route.params.id, fetchDesenhos);
+
 </script>
   
   <style scoped>
