@@ -11,21 +11,39 @@ from rest_framework import viewsets,status,pagination
 from rest_framework.decorators import action
 
 
+class CustomPagination(pagination.PageNumberPagination):
+    page_size = 15 
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+    
+
+
 class ImagemViewSet(viewsets.ModelViewSet):
-    queryset = Imagem.objects.all()
+    queryset = Imagem.objects.all().order_by('id')
     serializer_class = ImagemSerializer
+    pagination_class = CustomPagination 
+
+
 
 class CategoriaViewSet(viewsets.ModelViewSet):
-    queryset = Categoria.objects.all()
+    queryset = Categoria.objects.all().order_by('id')
     serializer_class = CategoriaSerializer
+
+    
+
 
     @action(detail=True, methods=['get'])
     def categoria_desenho(self, request, pk=None):
         try:
             categoria = self.get_object()
-            desenhos = categoria.imagem_set.all()  # Use 'imagem_set' para acessar os desenhos associados à categoria
-            serializer = ImagemSerializer(desenhos, many=True, context={'request': request})
-            return Response(serializer.data)
+            desenhos = categoria.imagem_set.all().order_by('id')
+            
+            # Aplica a paginação
+            paginator = CustomPagination()
+            result_page = paginator.paginate_queryset(desenhos, request)
+            
+            serializer = ImagemSerializer(result_page, many=True, context={'request': request})
+            return paginator.get_paginated_response(serializer.data)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
