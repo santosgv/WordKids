@@ -44,10 +44,6 @@ onMounted(async () => {
               </li>
               <RouterLink to="/about"><a class="nav-link">Sobre</a></RouterLink> 
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Ex: Carrinho" aria-label="Search">
-              <button class="btn btn-success" type="submit">Procurar</button>
-            </form>
           </div>
         </div>
       </nav>
