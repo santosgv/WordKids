@@ -9,6 +9,7 @@ import os
 from django.conf import settings
 from rest_framework import viewsets,status,pagination
 from rest_framework.decorators import action
+from django.http import JsonResponse
 
 
 class CustomPagination(pagination.PageNumberPagination):
@@ -29,19 +30,13 @@ class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all().order_by('id')
     serializer_class = CategoriaSerializer
 
-    
-
-
     @action(detail=True, methods=['get'])
     def categoria_desenho(self, request, pk=None):
         try:
             categoria = self.get_object()
             desenhos = categoria.imagem_set.all().order_by('id')
-            
-            # Aplica a paginação
             paginator = CustomPagination()
             result_page = paginator.paginate_queryset(desenhos, request)
-            
             serializer = ImagemSerializer(result_page, many=True, context={'request': request})
             return paginator.get_paginated_response(serializer.data)
         except Exception as e:
@@ -56,6 +51,11 @@ def imprimir(request,id):
             PDF.showPage()
             PDF.save()
             buffer.seek(0)
-            return FileResponse(buffer, as_attachment=True, filename='Mundo Colorido Kids - Desenho.pdf')
+            response = FileResponse(buffer, as_attachment=True, filename='Mundo Colorido Kids - Desenho.pdf')
+            response.status_code = 200
+            return response
         except Exception as msg:
-            print(msg)
+            response = msg
+            response.status_code = 404
+            return JsonResponse({"error": str(msg)}, status=response.status_code)
+        
