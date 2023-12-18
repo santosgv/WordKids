@@ -1,6 +1,6 @@
 <template>
     <div class="Desenho container-fluid">
-      <h1 class="text-center">Por Categoria</h1>
+      <h1 class="text-center" style="color:var(--azul-celeste);">Por Categoria</h1>
       <div class="form-row text-center">
         <form class="form-group mx-sm-3 mb-2" @submit.prevent="search">
           <input v-model="searchTerm" class="form-group col-md-6" type="search" placeholder="Ex: Natal" aria-label="Search">
@@ -20,7 +20,6 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <li class="page-item"><button class="page-link" @click="loadPage(desenhos.previous)" :disabled="!desenhos.previous">Anterior</button></li>
-        <li class="page-item"><a class="page-link">{{ desenhos.count }}</a></li>
         <li class="page-item"><button class="page-link" @click="loadPage(desenhos.next)" :disabled="!desenhos.next">Próxima</button></li>
       </ul>
     </nav>

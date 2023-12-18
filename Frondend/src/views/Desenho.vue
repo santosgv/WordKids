@@ -9,8 +9,8 @@
 <template>
   <div class="Desenho">
     <div class="text-center">
-      <h1>Desenho</h1>
-      <p class="text-center"><RouterLink to="/">&lt; Back</RouterLink></p>
+      <h1 style="color:var(--azul-celeste);">Desenho</h1>
+      <p class="text-center"><RouterLink to="/">&lt; Voltar</RouterLink></p>
       <img :src="desenho.arquivo" class="img-fluid tamanho" fluid alt="Fluid image">
       <p>{{ desenho.nome }}</p>
       <p>{{ desenho.descricao }}</p>

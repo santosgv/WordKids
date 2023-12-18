@@ -1,6 +1,6 @@
 <template>
   <div class="Desenho container-fluid">
-    <h1 class="text-center">Mundo Colorido Kids</h1>
+    <h1 class="text-center" style="color:var(--azul-celeste);">Mundo Colorido Kids</h1>
     <div class="form-row text-center">
       <form class="form-group mx-sm-3 mb-2" @submit.prevent="search">
         <input v-model="searchTerm" class="form-group col-md-6" type="search" placeholder="Ex: Natal" aria-label="Search">
@@ -22,7 +22,6 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <li class="page-item"><button class="page-link" @click="loadPage(desenhos.previous)" :disabled="!desenhos.previous">Anterior</button></li>
-        <li class="page-item"><a class="page-link">{{ desenhos.count }}</a></li>
         <li class="page-item"><button class="page-link" @click="loadPage(desenhos.next)" :disabled="!desenhos.next">Próxima</button></li>
       </ul>
     </nav>
@@ -67,12 +66,5 @@ const matchesSearch = (desenho) => {
 .tmg {
   max-height: 150px;
   width: auto;
-}
-.pagination {
-  margin-top: 10px;
-  text-align: center;
-}
-.pagination button {
-  margin: 0 5px;
 }
 </style>
