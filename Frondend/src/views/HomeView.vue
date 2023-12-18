@@ -1,19 +1,18 @@
 <template>
-      <form class="d-flex" @submit.prevent="search">
-      <input v-model="searchTerm" class="form-control me-2" type="search" placeholder="Ex: Carrinho" aria-label="Search">
-      <button class="btn btn-success" type="submit">Procurar</button>
-    </form>
-    
+  <form class="d-flex" @submit.prevent="search">
+    <input v-model="searchTerm" class="form-control me-2" type="search" placeholder="Ex: Carrinho" aria-label="Search">
+    <button class="btn btn-success" type="submit">Procurar</button>
+  </form>
   <div class="Desenho container-fluid">
     <h1 class="text-center">Mundo Colorido Kids</h1>
-
     <div class="row justify-content-center">
-      <!-- Itera pelos desenhos filtrados -->
-      <div v-for="desenho in desenhos.results" :key="desenho.id" class="card text-center mb-3" style="width: 15rem;" v-show="matchesSearch(desenho)">
+
+      <div v-for="desenho in desenhos.results" :key="desenho.id" class="card text-center mb-3" v-show="matchesSearch(desenho)" style="width: 15rem;">
         <div class="card-body text-center">
           <img :src="desenho.arquivo" class="img-fluid tmg" alt="previa">
           <h5 class="card-title">{{ desenho.nome }}</h5>
           <p class="card-text">{{ desenho.descricao }}</p>
+
           <RouterLink :to="`/desenho/${desenho.id}/`"><a class="nav-link">Link</a></RouterLink>
         </div>
       </div>
@@ -30,19 +29,24 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
-
-const route = useRoute()
-const desenhos = ref([])
+import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
+const desenhos = ref({ results: [], previous: null, next: null, current_page: 1 })
 const searchTerm = ref('')
 
-const fetchDesenhos = async () => {
-  const apiUrl = `http://localhost:8000/api/imagens/`
-  const response = await fetch(apiUrl)
+const loadPage = async (url) => {
+  if (url) {
+    const response = await fetch(url)
+    const data = await response.json()
+    desenhos.value = data
+  }
+}
+
+onMounted(async () => {
+  const response = await fetch('http://127.0.0.1:8000/api/imagens/')
   const data = await response.json()
   desenhos.value = data
-}
+})
 
 const matchesSearch = (desenho) => {
   const lowerCaseSearch = searchTerm.value.toLowerCase()
@@ -53,10 +57,21 @@ const matchesSearch = (desenho) => {
 }
 
 
-onMounted(fetchDesenhos)
-watch(() => route.params.id, fetchDesenhos)
 </script>
 
 <style scoped>
-/* Seu estilo CSS */
+.card {
+  margin-right: 5px;
+}
+.tmg {
+  max-height: 150px;
+  width: auto;
+}
+.pagination {
+  margin-top: 10px;
+  text-align: center;
+}
+.pagination button {
+  margin: 0 5px;
+}
 </style>
