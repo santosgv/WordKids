@@ -9,7 +9,9 @@ import os
 from django.conf import settings
 from rest_framework import viewsets,status,pagination
 from rest_framework.decorators import action
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
+from django.views.decorators.cache import cache_page
+
 
 
 class CustomPagination(pagination.PageNumberPagination):
@@ -58,4 +60,14 @@ def imprimir(request,id):
             response = msg
             response.status_code = 404
             return JsonResponse({"error": str(msg)}, status=response.status_code)
-        
+
+@cache_page(60 * 15)
+def robots(request):
+    if not settings.DEBUG:
+        path = os.path.join(settings.STATIC_ROOT,'robots.txt')
+        with open(path,'r') as arq:
+            return HttpResponse(arq, content_type='text/plain')
+    else:
+        path = os.path.join(settings.BASE_DIR,'templates/static/robots.txt')
+        with open(path,'r') as arq:
+            return HttpResponse(arq, content_type='text/plain')

@@ -1,10 +1,11 @@
 <template>
-        <form class="d-flex" @submit.prevent="search">
-      <input v-model="searchTerm" class="form-control me-2" type="search" placeholder="Ex: Carrinho" aria-label="Search">
-      <button class="btn btn-success" type="submit">Procurar</button>
-    </form>
     <div class="Desenho container-fluid">
       <h1 class="text-center">Por Categoria</h1>
+      <div class="form-row text-center">
+        <form class="form-group mx-sm-3 mb-2" @submit.prevent="search">
+          <input v-model="searchTerm" class="form-group col-md-6" type="search" placeholder="Ex: Natal" aria-label="Search">
+        </form>
+        </div>
       <div class="row row justify-content-center">
         
         <div v-for="desenho in desenhos.results" :key="desenho.id" class="card text-center mb-3" v-show="matchesSearch(desenho)" style="width: 15rem;">
