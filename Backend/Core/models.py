@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=100)
@@ -12,7 +13,7 @@ class Imagem(models.Model):
     arquivo = models.ImageField(upload_to='Imagens')
     descricao = models.TextField(blank=True)
     data_upload = models.DateTimeField(auto_now_add=True)
-    afiliado= models.TextField(max_length=500,null=True, blank=True)
+    afiliado= RichTextField(max_length=3000, null=True, blank=True)
 
     def __str__(self):
         return self.nome

@@ -1,6 +1,7 @@
 :root {
   --azul-celeste: #1E90FF;
   --amarelo-sol:#f49e12;
+  --bage:#c5c5c5;
 }
 
 *,
@@ -15,6 +16,23 @@
 
 .navbar-color{
   background-color: var(--azul-celeste);
+  color: var(--amarelo-sol);
+  font-size:larger;
+  font-weight: bold;
+}
+
+.nav-link{
+  color: var(--amarelo-sol);
+}
+
+.nav-link:focus, .nav-link:hover{
+  color: var(--bage);
+}
+
+.filiado{
+  text-align: center;
+  font-weight: bold;
+  color: var(--amarelo-sol);
 }
 
 a {

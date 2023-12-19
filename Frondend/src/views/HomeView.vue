@@ -21,8 +21,12 @@
 
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item"><button class="page-link" @click="loadPage(desenhos.previous)" :disabled="!desenhos.previous">Anterior</button></li>
-        <li class="page-item"><button class="page-link" @click="loadPage(desenhos.next)" :disabled="!desenhos.next">Próxima</button></li>
+        <li class="page-item" :class="{ 'disabled': !desenhos.previous }">
+          <a class="page-link" @click="loadPage(desenhos.previous)" :disabled="!desenhos.previous">Anterior</a>
+        </li>
+        <li class="page-item" :class="{ 'disabled': !desenhos.next }">
+          <a class="page-link" @click="loadPage(desenhos.next)" :disabled="!desenhos.next">Próxima</a>
+        </li>
       </ul>
     </nav>
   </div>

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'ckeditor',
      'corsheaders',
     'Core',
 ]
@@ -162,3 +163,23 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = 'https://code.jquery.com/jquery-3.6.0.min.js'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['Link', 'Unlink'],
+            ['NumberedList', 'BulletedList'],
+            ['Image', 'Table'],
+            ['Format', 'RemoveFormat'],
+            ['Source'],
+        ],
+        'width': 800,
+        'height': 300,
+        'tabSpaces': 4,
+    },
+}
