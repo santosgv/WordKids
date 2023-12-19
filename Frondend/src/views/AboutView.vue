@@ -5,7 +5,6 @@
         
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
-
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <p style="display: grid;">Em nosso cantinho especial, a magia da criatividade ganha vida! Aqui, cada desenho é uma porta para um universo repleto de cores, aventuras e sorrisos. 🌈✨
                         <br><br>

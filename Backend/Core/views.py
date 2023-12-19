@@ -11,6 +11,8 @@ from rest_framework import viewsets,status,pagination
 from rest_framework.decorators import action
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+
 
 
 
@@ -27,10 +29,10 @@ class ImagemViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination 
 
 
-
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all().order_by('id')
     serializer_class = CategoriaSerializer
+
 
     @action(detail=True, methods=['get'])
     def categoria_desenho(self, request, pk=None):
