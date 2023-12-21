@@ -2,6 +2,8 @@
   --azul-celeste: #1E90FF;
   --amarelo-sol:#f49e12;
   --bage:#c5c5c5;
+  --agua-marinha:#7fffd4;
+  --branco:#fff;
 }
 
 *,
@@ -9,24 +11,38 @@
 *::after {
   box-sizing: border-box;
 }
+body{
+  background-color:#08325b;
+}
+
+.about{
+  color: var(--branco);
+}
 
 .selector-for-some-widget {
   box-sizing: content-box;
 }
 
 .navbar-color{
-  background-color: var(--azul-celeste);
-  color: var(--amarelo-sol);
+  background-color: var(--branco);
+  color: var(--azul-celeste);
   font-size:larger;
   font-weight: bold;
 }
 
 .nav-link{
-  color: var(--amarelo-sol);
+  color: var(--azul-celeste);
 }
 
 .nav-link:focus, .nav-link:hover{
   color: var(--bage);
+}
+
+.titulo{
+  font-family: cursive;
+  font-weight: bold;
+  color: #fff;
+
 }
 
 .filiado{

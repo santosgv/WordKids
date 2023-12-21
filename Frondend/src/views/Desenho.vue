@@ -9,7 +9,7 @@
 <template>
   <div class="Desenho">
     <div class="text-center">
-      <h1 style="color:var(--azul-celeste);">Desenho</h1>
+      <h1 class="text-center titulo">Desenho</h1>
       <p class="text-center"><RouterLink to="/">&lt; Voltar</RouterLink></p>
       <img :src="desenho.arquivo" class="img-fluid tamanho" fluid alt="Fluid image">
       <p>{{ desenho.nome }}</p>
@@ -17,7 +17,7 @@
       <div v-html="desenho.afiliado" class="filiado"></div>
       <br>
       <div>
-      <button :href="`http://127.0.0.1:8000/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="btn btn-success">Baixar</button>
+      <a :href="`http://127.0.0.1:8000/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="btn btn-success">Baixar</a>
     </div>
     <br>
     </div>
