@@ -1,7 +1,13 @@
 from django.contrib import admin
-from Core.models import Imagem,Categoria
+from .models import Imagem,Categoria
 
-# Register your models here.
 
-admin.site.register(Imagem)
+
+@admin.register(Imagem)
+class ImagenAdmin(admin.ModelAdmin):
+    list_display =('nome','categoria','icone','descricao','data_upload')
+    list_filter =('categoria','data_upload')
+
+
+
 admin.site.register(Categoria)

@@ -34,7 +34,7 @@ onMounted(async () => {
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categorias
+                  Categories
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <div v-for="categoria in categorias" :key="categoria.id">
@@ -42,7 +42,7 @@ onMounted(async () => {
                 </div>
                 </ul>
               </li>
-              <RouterLink to="/about"><a class="nav-link">Sobre</a></RouterLink> 
+              <RouterLink to="/about"><a class="nav-link">About</a></RouterLink> 
             </ul>
           </div>
         </div>
