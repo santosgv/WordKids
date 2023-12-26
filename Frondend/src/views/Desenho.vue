@@ -4,7 +4,7 @@
   <div class=" Desenho">
     <div class="text-center">
       <div class="row justify-content-center">
-      <h1 class="text-center titulo">Drawing</h1>
+      <h1 class="text-center titulo">Desenho</h1>
       <p class="text-center"><RouterLink to="/">&lt; Back</RouterLink></p>
       <div class="card" style="width: 45rem;">
         <br>
@@ -14,7 +14,7 @@
       <div v-html="desenho.afiliado" class="filiado"></div>
       <br>
       <div>
-      <a :href="`http://127.0.0.1:8000/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="btn btn-success">Download</a>
+      <a :href="`http://127.0.0.1:8000/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="btn btn-success">Baixar</a>
     </div>
     <br>
     </div>

@@ -30,11 +30,11 @@ onMounted(async () => {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-              <RouterLink to="/" ><a class="nav-link" aria-current="page">Home</a></RouterLink>
+              <RouterLink to="/" ><a class="nav-link" aria-current="page">Inicio</a></RouterLink>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categories
+                  Categorias
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <div v-for="categoria in categorias" :key="categoria.id">
@@ -42,7 +42,7 @@ onMounted(async () => {
                 </div>
                 </ul>
               </li>
-              <RouterLink to="/about"><a class="nav-link">About</a></RouterLink> 
+              <RouterLink to="/about"><a class="nav-link">Sobre</a></RouterLink> 
             </ul>
           </div>
         </div>
