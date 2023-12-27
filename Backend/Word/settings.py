@@ -25,7 +25,9 @@ ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = [
     "127.0.0.1",
     'localhost',
-    ''
+    '154.49.246.53',
+    'meuemenus.com.br',
+
 ]
 
 
@@ -152,7 +154,10 @@ CORS_ALLOWED_ORIGINS : False
 
 CORS_ORIGIN_WHITELIST = (
        'http://localhost:8000',
-       'http://localhost:5173'
+       'http://localhost:5173',
+       'https://meuemenus.com.br:80',
+       'https://meuemenus.com.br:5173',
+
 )
 
 CORS_ALLOW_METHODS = [

@@ -58,11 +58,12 @@ body {
 .filiado{
   text-align: center;
   font-weight: bold;
-  color: var(--amarelo-sol);
+  color: var(--bage);
 }
 
 a {
   text-decoration: none;
+  color:var(--amarelo-sol);
 }
 
 @media (prefers-reduced-motion: no-preference) {

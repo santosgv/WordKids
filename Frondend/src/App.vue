@@ -8,7 +8,7 @@ const categorias = ref([])
 
 onMounted(async () => {
   // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
-  const response = await fetch('http://localhost:8000/api/categorias/')
+  const response = await fetch('https://meuemenus.com.br/api/categorias/')
   const data = await response.json()
 
   // Atualize a variável de estado com os dados da API

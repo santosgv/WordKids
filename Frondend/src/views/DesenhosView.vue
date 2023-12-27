@@ -51,7 +51,7 @@ const loadPage = async (url) => {
 }
 
 const fetchDesenhos = async () => {
-  const apiUrl = `http://localhost:8000/api/categorias/${route.params.id}/categoria_desenho/`;
+  const apiUrl = `https://meuemenus.com.br/api/categorias/${route.params.id}/categoria_desenho/`;
 
   // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
   const response = await fetch(apiUrl);
