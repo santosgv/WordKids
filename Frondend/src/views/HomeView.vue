@@ -3,7 +3,7 @@
     <h1 class="text-center titulo">Mundo Colorido Kids</h1>
     <div class="form-row text-center">
       <form class="form-group mx-sm-3 mb-2" @submit.prevent="search">
-        <input v-model="searchTerm" class="form-group col-md-6" type="search" placeholder="Ex: Car" aria-label="Search">
+        <input v-model="searchTerm" class="form-group col-md-6" type="search" placeholder="Ex: Carro" aria-label="Search">
       </form>
       </div>
     <div class="row justify-content-center">
@@ -47,7 +47,7 @@ const loadPage = async (url) => {
 }
 
 onMounted(async () => {
-  const response = await fetch('https://meuemenus.com.br/api/imagens/')
+  const response = await fetch('http://154.49.246.53/api/imagens/')
   const data = await response.json()
   desenhos.value = data
 })

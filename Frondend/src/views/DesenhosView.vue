@@ -3,7 +3,7 @@
       <h1 class="text-center titulo">Por Categoria</h1>
       <div class="form-row text-center">
         <form class="form-group mx-sm-3 mb-2" @submit.prevent="search">
-          <input v-model="searchTerm" class="form-group col-md-6" type="search" placeholder="Ex: Car" aria-label="Search">
+          <input v-model="searchTerm" class="form-group col-md-6" type="search" placeholder="Ex: Carro" aria-label="Search">
         </form>
         </div>
       <div class="row row justify-content-center">
@@ -51,7 +51,7 @@ const loadPage = async (url) => {
 }
 
 const fetchDesenhos = async () => {
-  const apiUrl = `https://meuemenus.com.br/api/categorias/${route.params.id}/categoria_desenho/`;
+  const apiUrl = `http://154.49.246.53/api/categorias/${route.params.id}/categoria_desenho/`;
 
   // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
   const response = await fetch(apiUrl);
