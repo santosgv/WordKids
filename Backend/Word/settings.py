@@ -152,7 +152,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ALLOWED_ORIGINS : False
+CORS_ALLOWED_ORIGINS : True
 
 CORS_ORIGIN_WHITELIST = (
        'http://localhost:8000',
