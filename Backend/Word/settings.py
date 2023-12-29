@@ -27,7 +27,8 @@ INTERNAL_IPS = [
     'localhost',
     '154.49.246.53',
     'meuemenus.com.br',
-    'http://154.49.246.53'
+    'http://154.49.246.53',
+    'https://154.49.246.53'
 
 ]
 
@@ -159,7 +160,8 @@ CORS_ORIGIN_WHITELIST = (
        'https://meuemenus.com.br:80',
        'https://meuemenus.com.br:443',
        'http://154.49.246.53:80',
-       'http://154.49.246.53:443'
+       'http://154.49.246.53:443',
+       'https://154.49.246.53'
 
 )
 
