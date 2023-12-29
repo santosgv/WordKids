@@ -47,7 +47,7 @@ const loadPage = async (url) => {
 }
 
 onMounted(async () => {
-  const response = await fetch('https://154.49.246.53/api/imagens/')
+  const response = await fetch('https://meuemenus.com.br/api/imagens/')
   const data = await response.json()
   desenhos.value = data
 })
