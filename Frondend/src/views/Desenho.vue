@@ -14,7 +14,7 @@
       <div v-html="desenho.afiliado" class="filiado"></div>
       <br>
       <div>
-      <a :href="`https://meuemenus.com.br/api/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="btn btn-success">Baixar</a>
+      <a :href="`https://154.49.246.53/api/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="btn btn-success">Baixar</a>
     </div>
     <br>
     </div>

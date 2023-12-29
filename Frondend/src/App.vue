@@ -8,7 +8,11 @@ const categorias = ref([])
 
 onMounted(async () => {
   // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
-  const response = await fetch('https://meuemenus.com.br/api/categorias/')
+  const response = await fetch('https://154.49.246.53/api/categorias/',{
+    method:"get",
+    mode:'cors',
+    headers:"text/xml"
+  })
   
   const data = await response.json()
 
