@@ -33,46 +33,59 @@
     </div>
   </template>
   
-<script setup>
-import { ref, onMounted, watch } from 'vue'
-import { RouterLink,useRoute } from 'vue-router'
-
-
-const route = useRoute();
-const desenhos = ref([])
-const searchTerm = ref('')
-
-const loadPage = async (url) => {
-  if (url) {
-    const response = await fetch(url)
-    const data = await response.json()
-    desenhos.value = data
+  <script setup>
+  import { ref, onMounted, watch } from 'vue'
+  import { RouterLink, useRoute } from 'vue-router'
+  
+  const route = useRoute();
+  const desenhos = ref([])
+  const searchTerm = ref('')
+  
+  const loadPage = async (url) => {
+    if (url) {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          // Adicione qualquer cabeçalho adicional aqui, se necessário
+        },
+      });
+      const data = await response.json();
+      desenhos.value = data;
+    }
   }
-}
-
-const fetchDesenhos = async () => {
-  const apiUrl = `https://154.49.246.53/api/categorias/${route.params.id}/categoria_desenho/`;
-
-  // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
-  const response = await fetch(apiUrl);
-  const data = await response.json();
-
-  // Atualize a variável de estado com os dados da API
-  desenhos.value = data
-};
-
-onMounted(fetchDesenhos);
-watch(() => route.params.id, fetchDesenhos);
-
-const matchesSearch = (desenho) => {
-  const lowerCaseSearch = searchTerm.value.toLowerCase()
-  return (
-    desenho.nome.toLowerCase().includes(lowerCaseSearch) ||
-    desenho.descricao.toLowerCase().includes(lowerCaseSearch)
-  )
-}
-
-</script>
+  
+  const fetchDesenhos = async () => {
+    const apiUrl = `http://127.0.0.1:8000/api/categorias/${route.params.id}/categoria_desenho/`;
+  
+    // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        // Adicione qualquer cabeçalho adicional aqui, se necessário
+      },
+    });
+    const data = await response.json();
+  
+    // Atualize a variável de estado com os dados da API
+    desenhos.value = data;
+  };
+  
+  onMounted(fetchDesenhos);
+  watch(() => route.params.id, fetchDesenhos);
+  
+  const matchesSearch = (desenho) => {
+    const lowerCaseSearch = searchTerm.value.toLowerCase()
+    return (
+      desenho.nome.toLowerCase().includes(lowerCaseSearch) ||
+      desenho.descricao.toLowerCase().includes(lowerCaseSearch)
+    )
+  }
+  </script>
+  
   
   <style scoped>
   .card {

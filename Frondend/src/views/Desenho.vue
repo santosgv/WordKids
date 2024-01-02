@@ -14,7 +14,7 @@
       <div v-html="desenho.afiliado" class="filiado"></div>
       <br>
       <div>
-      <a :href="`https://154.49.246.53/api/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="btn btn-success">Baixar</a>
+      <a :href="`http://127.0.0.1:8000/api/imprimir/${$route.params.id}`" download="NomeDoArquivo" class="btn btn-success">Baixar</a>
     </div>
     <br>
     </div>
@@ -33,7 +33,13 @@ const desenho = ref({});
 const route = useRoute();
 
 onMounted(async () => {
-  const response = await fetch(`https://154.49.246.53/api/imagens/${route.params.id}`);
+  const response = await fetch(`http://127.0.0.1:8000/api/imagens/${route.params.id}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
   const data = await response.json();
   desenho.value = data;
 });

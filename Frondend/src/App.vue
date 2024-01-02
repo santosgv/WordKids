@@ -1,25 +1,30 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-
 import { ref, onMounted } from 'vue'
-
 
 const categorias = ref([])
 
 onMounted(async () => {
-  // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
-  const response = await fetch('https://154.49.246.53/api/categorias/',{
-    method:"get",
-    mode:'cors',
-    headers:"text/xml"
-  })
-  
-  const data = await response.json()
+  try {
+    // Substitua 'https://seufront.com' pelo seu domínio real
+    const response = await fetch('http://127.0.0.1:8000/api/categorias/', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
 
-  // Atualize a variável de estado com os dados da API
-  categorias.value = data
+    if (response.ok) {
+      const data = await response.json()
+      categorias.value = data
+    } else {
+      console.error('Erro ao buscar categorias:', response.statusText)
+    }
+  } catch (error) {
+    console.error('Erro na solicitação:', error.message)
+  }
 })
-
 </script>
 
 <template>

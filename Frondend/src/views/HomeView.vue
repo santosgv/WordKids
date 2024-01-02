@@ -35,19 +35,34 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
+
 const desenhos = ref({ results: [], previous: null, next: null, current_page: 1 })
 const searchTerm = ref('')
 
 const loadPage = async (url) => {
   if (url) {
-    const response = await fetch(url)
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        // Adicione qualquer cabeçalho adicional aqui, se necessário
+      },
+    })
     const data = await response.json()
     desenhos.value = data
   }
 }
 
 onMounted(async () => {
-  const response = await fetch('https://154.49.246.53/api/imagens/')
+  const response = await fetch('http://127.0.0.1:8000/api/imagens/', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      // Adicione qualquer cabeçalho adicional aqui, se necessário
+    },
+  })
   const data = await response.json()
   desenhos.value = data
 })
@@ -59,8 +74,6 @@ const matchesSearch = (desenho) => {
     desenho.descricao.toLowerCase().includes(lowerCaseSearch)
   )
 }
-
-
 </script>
 
 <style scoped>
