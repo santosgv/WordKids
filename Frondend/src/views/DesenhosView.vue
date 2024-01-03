@@ -57,7 +57,7 @@
   }
   
   const fetchDesenhos = async () => {
-    const apiUrl = `http://127.0.0.1:8000/api/categorias/${route.params.id}/categoria_desenho/`;
+    const apiUrl = `https://154.49.246.53/api/categorias/${route.params.id}/categoria_desenho/`;
   
     // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
     const response = await fetch(apiUrl, {

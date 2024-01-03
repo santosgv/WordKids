@@ -55,7 +55,7 @@ const loadPage = async (url) => {
 }
 
 onMounted(async () => {
-  const response = await fetch('http://127.0.0.1:8000/api/imagens/', {
+  const response = await fetch('https://154.49.246.53/api/imagens/', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
