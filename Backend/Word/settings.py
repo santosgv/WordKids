@@ -168,21 +168,16 @@ CORS_ALLOW_HEADERS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'https://meuemenus.com.br',
-    'https://154.49.246.53'
+    '*',
 ]
 
 CORS_ORIGIN_WHITELIST = (
-       'http://localhost:8000',
-       'http://localhost:5173',
-       'https://meuemenus.com.br',
-       'https://154.49.246.53'
-
+       '*'
 )
 
 CORS_ALLOW_METHODS = [
     "GET",
-     'OPTIONS',
+    'OPTIONS',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
