@@ -7,7 +7,7 @@ const categorias = ref([])
 onMounted(async () => {
   try {
     // Substitua 'https://seufront.com' pelo seu domínio real
-    const response = await fetch('http://127.0.0.1:8000/api/categorias/', {
+    const response = await fetch('https://154.49.246.53/api/categorias/', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
