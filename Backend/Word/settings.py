@@ -20,6 +20,12 @@ SECRET_KEY =config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
+if not DEBUG:
+	SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+	SECURE_SSL_REDIRECT = True
+	SESSION_COOKIE_SECURE = True
+	CSRF_COOKIE_SECURE = True
+
 ALLOWED_HOSTS = ['*']
 
 INTERNAL_IPS = [
@@ -168,11 +174,11 @@ CORS_ALLOW_HEADERS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    '*',
+    'https://meuemenus.com.br',
 ]
 
 CORS_ORIGIN_WHITELIST = (
-       '*'
+       'https://meuemenus.com.br'
 )
 
 CORS_ALLOW_METHODS = [
