@@ -9,7 +9,7 @@ class CustomCorsMiddleware:
 
         response = self.get_response(request)
         response["Access-Control-Allow-Origin"] = "https://meuemenus.com.br"
-        response["Access-Control-Allow-Headers"] = "https://meuemenus.com.br"
+        response["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
 
         # Code to be executed for each request/response after
         # the view is called.
