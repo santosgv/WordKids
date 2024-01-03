@@ -49,7 +49,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-#    'Word.middleware.CustomCorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "corsheaders.middleware.CorsMiddleware",
@@ -155,7 +154,6 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_CREDENTIALS = True
 
-#CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_HEADERS = [
     'accept',
@@ -171,6 +169,7 @@ CORS_ALLOW_HEADERS = [
 
 CORS_ALLOWED_ORIGINS = [
     'https://meuemenus.com.br',
+    'https://154.49.246.53'
 ]
 
 CORS_ORIGIN_WHITELIST = (
