@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
+  #  "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -143,33 +143,33 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ALLOW_CREDENTIALS = True
+#CORS_ALLOW_CREDENTIALS = True
 
 
-CORS_ALLOW_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-]
+#CORS_ALLOW_HEADERS = [
+#    'accept',
+#    'accept-encoding',
+#    'authorization',
+#    'content-type',
+#    'dnt',
+#    'origin',
+#    'user-agent',
+#    'x-csrftoken',
+#    'x-requested-with',
+#]
 
-CORS_ALLOWED_ORIGINS = [
-    'https://mundocoloridokids.com.br',
-]
+#CORS_ALLOWED_ORIGINS = [
+#    'https://mundocoloridokids.com.br',
+#]
 
-CORS_ORIGIN_WHITELIST = (
-    'https://mundocoloridokids.com.br',
-)
+#CORS_ORIGIN_WHITELIST = (
+#    'https://mundocoloridokids.com.br',
+#)
 
-CORS_ALLOW_METHODS = [
-    "GET",
-    'OPTIONS',
-]
+#CORS_ALLOW_METHODS = [
+#   "GET",
+#    'OPTIONS',
+#]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
