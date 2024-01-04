@@ -24,13 +24,13 @@ class CustomPagination(pagination.PageNumberPagination):
 
 
 class ImagemViewSet(viewsets.ModelViewSet):
-    queryset = Imagem.objects.all().order_by('id')
+    queryset = Imagem.objects.all().order_by('-id')
     serializer_class = ImagemSerializer
     pagination_class = CustomPagination 
 
 
 class CategoriaViewSet(viewsets.ModelViewSet):
-    queryset = Categoria.objects.all().order_by('id')
+    queryset = Categoria.objects.all().order_by('-id')
     serializer_class = CategoriaSerializer
 
 
