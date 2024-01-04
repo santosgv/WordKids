@@ -160,12 +160,16 @@ CORS_ALLOW_HEADERS = [
 
 CORS_ALLOWED_ORIGINS = [
     'https://mundocoloridokids.com.br',
-    'http://localhost:5173'
+    'http://mundocoloridokids.com.br',
+    'http://localhost:5173',
+    'https://154.49.246.53'
 ]
 
 CORS_ORIGIN_WHITELIST = (
     'https://mundocoloridokids.com.br',
-    'http://localhost:5173'
+    'http://mundocoloridokids.com.br',
+    'http://localhost:5173',
+    'https://154.49.246.53',
 )
 
 CORS_ALLOW_METHODS = [
