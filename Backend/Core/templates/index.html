@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}
+Pagina inicial
+{% endblock %}
+
+{% block 'body' %}
+{% for img in imagens %}
+<div class="row row-cols-1 row-cols-md-2">
+    <div class="col mb-4">
+      <div class="card">
+        <img src="{{img.arquivo.url}}" class="card-img-top" alt="{{img.arquivo.url}}">
+        <div class="card-body">
+          <h5 class="card-title">{{img.nome}}</h5>
+          <p class="card-text">{{img.descricao}}</p>
+        </div>
+        <a type="button" href="{% url 'Core:desenho' img.id %}" class="btn btn-success">Ver</a>
+      </div>
+    </div>
+  </div>
+{%endfor%}
+{% endblock %}

@@ -2,13 +2,16 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from Core.views import robots,imprimir
+from Core.views import imprimir,index,robots,categoria,desenho
 
 
 app_name = 'Core'
 
 urlpatterns = [
-    path('imprimir/<int:id>',imprimir, name='imprimir'),
+    path('',view=index,name='index'),
+    path('categoria/<int:id>',view=categoria,name='categoria'),
+    path('desenho/<int:id>',view=desenho,name='desenho'),
+    path('imprimir/<int:id>',view=imprimir, name='imprimir'),
     path('robots.txt',robots),
 ]
 

@@ -1,14 +1,12 @@
 from django.http import FileResponse
-from rest_framework.response import Response
 from .models import Imagem,Categoria
-from .serializers import ImagemSerializer,CategoriaSerializer
+from django.shortcuts import redirect, render
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
+from django.core.paginator import Paginator
 import io
 import os
 from django.conf import settings
-from rest_framework import viewsets,status,pagination
-from rest_framework.decorators import action
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
@@ -16,35 +14,26 @@ from PIL import Image
 
 
 
-class CustomPagination(pagination.PageNumberPagination):
-    page_size = 50
-    page_size_query_param = 'page_size'
-    max_page_size = 100
-    
+def index(request):
+     categorias = Categoria.objects.all()
+     imagens = Imagem.objects.all().order_by('-id')
+     pagina = Paginator(imagens,50)
+     pg_number = request.GET.get('page')
+     imgs = pagina.get_page(pg_number)
+     return render(request,'index.html',{'imagens':imgs,'categorias':categorias,})
 
+def categoria(request,id):
+     categorias = Categoria.objects.all()
+     imagens = Imagem.objects.filter(categoria=id).order_by('-id')
+     pagina = Paginator(imagens,50)
+     pg_number = request.GET.get('page')
+     imgs = pagina.get_page(pg_number)
+     return render(request,'categoria.html',{'imagens':imgs,'categorias':categorias,})
 
-class ImagemViewSet(viewsets.ModelViewSet):
-    queryset = Imagem.objects.all().order_by('-id')
-    serializer_class = ImagemSerializer
-    pagination_class = CustomPagination 
-
-
-class CategoriaViewSet(viewsets.ModelViewSet):
-    queryset = Categoria.objects.all().order_by('-id')
-    serializer_class = CategoriaSerializer
-
-
-    @action(detail=True, methods=['get'])
-    def categoria_desenho(self, request, pk=None):
-        try:
-            categoria = self.get_object()
-            desenhos = categoria.imagem_set.all().order_by('id')
-            paginator = CustomPagination()
-            result_page = paginator.paginate_queryset(desenhos, request)
-            serializer = ImagemSerializer(result_page, many=True, context={'request': request})
-            return paginator.get_paginated_response(serializer.data)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+def desenho(request,id):
+     categorias = Categoria.objects.all()
+     img = Imagem.objects.filter(id=id)
+     return render(request,'desenho.html',{'img':img,'categorias':categorias,})
 
 def imprimir(request,id):
         try:

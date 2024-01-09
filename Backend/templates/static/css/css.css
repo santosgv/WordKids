@@ -1,0 +1,83 @@
+:root {
+    --azul-celeste: #1E90FF;
+    --amarelo-sol:#f49e12;
+    --bage:#c5c5c5;
+    --agua-marinha:#7fffd4;
+    --branco:#fff;
+  }
+  
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: cursive;
+    font-size:larger;
+    font-weight: bold;
+    height: 100vh;
+    line-height: var(--bs-body-line-height);
+    background-color: var(--azul-celeste);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  
+  .about{
+    color: var(--branco);
+  }
+  
+  .selector-for-some-widget {
+    box-sizing: content-box;
+  }
+  
+  .navbar-color{
+    background-color: var(--branco);
+    color: var(--azul-celeste);
+    font-size:larger;
+    font-weight: bold;
+  }
+  
+  .nav-link{
+    color: var(--azul-celeste);
+  }
+  
+  .nav-link:focus, .nav-link:hover{
+    color: var(--bage);
+  }
+  
+  .titulo{
+    font-family: cursive;
+    font-weight: bold;
+    color: #fff;
+  
+  }
+  
+  .filiado{
+    text-align: center;
+    font-weight: bold;
+    color: var(--bage);
+  }
+  
+  a {
+    text-decoration: none;
+    color:var(--amarelo-sol);
+  }
+  
+
+  .card {
+    margin-right: 5px;
+  }
+  .tmg {
+    max-height: 150px;
+    width: auto;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    :root {
+      scroll-behavior: smooth;
+    }
+  }
+  
