@@ -55,7 +55,7 @@ const loadPage = async (url) => {
 }
 
 onMounted(async () => {
-  const response = await fetch('https://154.49.246.53/api/imagens/', {
+  const response = await fetch('https://api.mundocoloridokids.com.br/api/imagens/', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',

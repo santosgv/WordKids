@@ -57,7 +57,7 @@
   }
   
   const fetchDesenhos = async () => {
-    const apiUrl = `https://154.49.246.53/api/categorias/${route.params.id}/categoria_desenho/`;
+    const apiUrl = `https://api.mundocoloridokids.com.br/api/categorias/${route.params.id}/categoria_desenho/`;
   
     // Simule uma chamada à API (substitua pelo código real para obter dados da sua API)
     const response = await fetch(apiUrl, {
