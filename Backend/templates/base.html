@@ -1,7 +1,7 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,11 +13,11 @@
     <meta property="og:url" content="." />
     <meta property="og:site_name" content="Mundo Colorido Kids" />
     <meta property="og:description"
-      content="Explore o mundo colorido da criatividade com desenhos para colorir do Mundo Colorido Kids. Deixe as crianças expressarem sua imaginação com nossa vasta coleção de desenhos divertidos e educativos." />
-    <meta name="Title" 
+          content="Explore o mundo colorido da criatividade com desenhos para colorir do Mundo Colorido Kids. Deixe as crianças expressarem sua imaginação com nossa vasta coleção de desenhos divertidos e educativos." />
+    <meta name="Title"
           content="Mundo Colorido Kids" />
     <meta name="Author" content="Vitor Gomes" />
-    <meta name="description" 
+    <meta name="description"
           content="Explore o mundo colorido da criatividade com desenhos para colorir do Mundo Colorido Kids. Deixe as crianças expressarem sua imaginação com nossa vasta coleção de desenhos divertidos e educativos.">
     <meta name="KeyWords"
           content="desenhos para colorir, crianças, atividades infantis, educação, criatividade, diversão, aprendizado" />
@@ -25,39 +25,40 @@
     <meta name="Language" CONTENT="Portuguese" />
     <meta name="Rating" CONTENT="Safe For Kids" />
     <meta name="Doc-class" CONTENT="Completed" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY92YJ63M8"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link href="{% static 'css/css.css' %}" rel="stylesheet" />
     <title>
-      {% block 'title' %}
-      {% endblock %}
+        {% block 'title' %}
+        {% endblock %}
     </title>
     <nav class="navbar navbar-expand-lg navbar-color" style="color:beige">
-      <a class="navbar-brand" href="#"><img src="{% static 'img/logo.png' %}" alt="logo" width="60" height="60"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'Core:index'%}">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-              Categorias
-            </a>
-            <div class="dropdown-menu">
-              {% for categoria in categorias %}
-              <a class="dropdown-item" href="{% url 'Core:categoria' categoria.id %}">{{categoria}}</a>
-              {% endfor %}
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'Core:about'%}">Sobre</a>
-          </li>
-        </ul>
-      </div>
+        <a class="navbar-brand" href="#"><img src="{% static 'img/logo.png' %}" alt="logo" width="60" height="60"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'Core:index'%}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        Categorias
+                    </a>
+                    <div class="dropdown-menu">
+                        {% for categoria in categorias %}
+                        <a class="dropdown-item" href="{% url 'Core:categoria' categoria.id %}">{{categoria}}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Core:about'%}">Sobre</a>
+                </li>
+            </ul>
+        </div>
     </nav>
-  </head>
+</head>
   <body>
     {% block 'body' %}
 	{% endblock %}
