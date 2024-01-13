@@ -172,3 +172,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+/.vs/WordKids
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
