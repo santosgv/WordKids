@@ -5,18 +5,41 @@ Pagina inicial
 {% endblock %}
 
 {% block 'body' %}
+<div class="container-fluid">
+  <br>
+<div class="row justify-content-center">
 {% for img in imagens %}
-<div class="row row-cols-1 row-cols-md-2">
-    <div class="col mb-4">
-      <div class="card">
-        <img src="{{img.arquivo.url}}" class="card-img-top" alt="{{img.arquivo.url}}">
-        <div class="card-body">
-          <h5 class="card-title">{{img.nome}}</h5>
-          <p class="card-text">{{img.descricao}}</p>
-        </div>
-        <a type="button" href="{% url 'Core:desenho' img.id %}" class="btn btn-success">Ver</a>
-      </div>
-    </div>
+<div class="card text-center carde" style="width: 20rem;">
+  <img src="{{img.arquivo.url}}" class="card-img-top" alt="{{img.arquivo.url}}">
+  <div class="card-body">
+    <h5 class="card-title">{{img.nome}}</h5>
+    <p class="card-text">{{img.descricao}}</p>
+    <a href="{% url 'Core:desenho' img.id %}" class="btn btn-success">Ver</a>
   </div>
-{%endfor%}
+</div>
+    {%endfor%}
+  </div>
+<br>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        {% if imagens.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1">Primeira</a>
+        </li>
+        <a class="page-link" href="?page={{ imagens.previous_page_number }}">Voltar</a>
+        {% endif %}
+      </li>
+      <li class="page-item disabled"><a class="page-link" href="#">{{ imagens.number }} : {{ imagens.paginator.num_pages }}</a></li>
+      {% if imagens.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ imagens.next_page_number }}">Proxima</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ imagens.paginator.num_pages }}">Ultima</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
 {% endblock %}

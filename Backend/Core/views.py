@@ -17,7 +17,7 @@ from PIL import Image
 def index(request):
      categorias = Categoria.objects.all()
      imagens = Imagem.objects.all().order_by('-id')
-     pagina = Paginator(imagens,50)
+     pagina = Paginator(imagens,25)
      pg_number = request.GET.get('page')
      imgs = pagina.get_page(pg_number)
      return render(request,'index.html',{'imagens':imgs,'categorias':categorias,})
@@ -25,7 +25,7 @@ def index(request):
 def categoria(request,id):
      categorias = Categoria.objects.all()
      imagens = Imagem.objects.filter(categoria=id).order_by('-id')
-     pagina = Paginator(imagens,50)
+     pagina = Paginator(imagens,25)
      pg_number = request.GET.get('page')
      imgs = pagina.get_page(pg_number)
      return render(request,'categoria.html',{'imagens':imgs,'categorias':categorias,})
@@ -34,6 +34,11 @@ def desenho(request,id):
      categorias = Categoria.objects.all()
      img = Imagem.objects.filter(id=id)
      return render(request,'desenho.html',{'img':img,'categorias':categorias,})
+
+@cache_page(60 * 15)
+def about(request):
+     categorias = Categoria.objects.all()
+     return render(request,'about.html',{'categorias':categorias,})
 
 def imprimir(request,id):
         try:
