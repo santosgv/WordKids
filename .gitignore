@@ -175,3 +175,4 @@ yarn-error.log*
 /.vs/WordKids
 /.vs/slnx.sqlite
 /.vs/VSWorkspaceState.json
+/Backend/Core/migrations/0001_initial.py
