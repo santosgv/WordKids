@@ -4,29 +4,38 @@
 {% block 'title' %}
 Desenho
 {% endblock %}
+
+ {% block 'cabeca' %}
+<!-- adsense tags -->
+<meta name="google-adsense-account" content="ca-pub-1825430354660819">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825430354660819"
+        crossorigin="anonymous"></script>
+ {% endblock %}
+
+
 {% block 'body' %}
 <div class="container-fluid">
-  <br>
-{% for i in img %}
-<div class="Desenho row justify-content-center">
-  <div class="card" style="width: 45rem;">
     <br>
-    <a href="/" class="text-center">&lt; Voltar</a>
-    <img class="img-fluid tamanho" src="{{i.arquivo.url}}" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title text-center">{{i.nome}}</h5>
-      <p class="card-text text-center">{{i.descricao}}</p>
-      {% if i.afiliado %}
-      <div class="filiado">{{i.afiliado|safe}}</div>
-      {% else %}
-      {% endif %}
-      <div class="text-center">
-        <a href="{% url 'Core:imprimir' i.id %}" download="NomeDoArquivo" class="btn btn-success">Baixar</a>
+    {% for i in img %}
+    <div class="Desenho row justify-content-center">
+        <div class="card" style="width: 45rem;">
+            <br>
+            <a href="/" class="text-center">&lt; Voltar</a>
+            <img class="img-fluid tamanho" src="{{i.arquivo.url}}" alt="Imagem de capa do card">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{i.nome}}</h5>
+                <p class="card-text text-center">{{i.descricao}}</p>
+                {% if i.afiliado %}
+                <div class="filiado">{{i.afiliado|safe}}</div>
+                {% else %}
+                {% endif %}
+                <div class="text-center">
+                    <a href="{% url 'Core:imprimir' i.id %}" download="NomeDoArquivo" class="btn btn-success">Baixar</a>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-  </div>
-</div>
-<br>
-{% endfor %}
+    <br>
+    {% endfor %}
 </div>
 {% endblock %}
