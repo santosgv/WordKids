@@ -15,6 +15,7 @@ class Imagem(models.Model):
     descricao = models.TextField(blank=True)
     data_upload = models.DateTimeField(auto_now_add=True)
     afiliado= RichTextField(max_length=3000, null=True, blank=True)
+    destaque= models.BooleanField(default=False)
 
     @mark_safe
     def icone(self):

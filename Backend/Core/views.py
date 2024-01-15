@@ -16,7 +16,7 @@ from PIL import Image
 
 def index(request):
      categorias = Categoria.objects.all()
-     imagens = Imagem.objects.all().order_by('-id')
+     imagens = Imagem.objects.filter(destaque=True).all().order_by('-id')
      pagina = Paginator(imagens,25)
      pg_number = request.GET.get('page')
      imgs = pagina.get_page(pg_number)

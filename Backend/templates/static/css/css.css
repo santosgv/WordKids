@@ -1,11 +1,15 @@
 :root {
     --azul-celeste: #1E90FF;
     --amarelo-sol:#f49e12;
-    --bage:#c5c5c5;
+    --bage:#737171;
     --agua-marinha:#7fffd4;
     --branco:#fff;
   }
   
+  @font-face {
+    font-family:'minhafonte';
+    src:url("../css/font/Find\ Cartoon.otf");
+}
   
   *,
   *::before,
@@ -15,9 +19,9 @@
   
   body {
     margin: 0;
-    font-family: cursive;
-    font-size:larger;
-    font-weight: bold;
+    font-family: minhafonte;
+    font-size:medium;
+    font-weight:normal;
     height: 100vh;
     line-height: var(--bs-body-line-height);
     background-color: var(--azul-celeste);
