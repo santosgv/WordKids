@@ -22,7 +22,7 @@ Por Categoria
             <div class="card-body">
                 <h5 class="card-title">{{img.nome}}</h5>
                 <p class="card-text">{{img.descricao}}</p>
-                <a href="{% url 'Core:desenho' img.id %}" class="btn btn-success">Ver</a>
+                <a href="{% url 'Core:desenho' img.nome %}" class="btn btn-success">Ver</a>
             </div>
         </div>
         {%endfor%}

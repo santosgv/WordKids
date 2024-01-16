@@ -22,17 +22,17 @@ def index(request):
      imgs = pagina.get_page(pg_number)
      return render(request,'index.html',{'imagens':imgs,'categorias':categorias,})
 
-def categoria(request,id):
+def categoria(request,nome):
      categorias = Categoria.objects.all()
-     imagens = Imagem.objects.filter(categoria=id).order_by('-id')
+     imagens = Imagem.objects.filter(categoria=nome).order_by('-id')
      pagina = Paginator(imagens,25)
      pg_number = request.GET.get('page')
      imgs = pagina.get_page(pg_number)
      return render(request,'categoria.html',{'imagens':imgs,'categorias':categorias,})
 
-def desenho(request,id):
+def desenho(request,nome):
      categorias = Categoria.objects.all()
-     img = Imagem.objects.filter(id=id)
+     img = Imagem.objects.filter(nome=nome)
      return render(request,'desenho.html',{'img':img,'categorias':categorias,})
 
 @cache_page(60 * 15)

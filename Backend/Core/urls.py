@@ -9,8 +9,8 @@ app_name = 'Core'
 
 urlpatterns = [
     path('',view=index,name='index'),
-    path('categoria/<int:id>',view=categoria,name='categoria'),
-    path('desenho/<int:id>',view=desenho,name='desenho'),
+    path('categoria/<str:nome>',view=categoria,name='categoria'),
+    path('desenho/<str:nome>',view=desenho,name='desenho'),
     path('about/',view=about,name='about'),
     path('imprimir/<int:id>',view=imprimir, name='imprimir'),
     path('ads.txt',ads),
