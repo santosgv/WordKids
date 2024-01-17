@@ -95,7 +95,7 @@ def robots(request):
         with open(path,'r') as arq:
             return HttpResponse(arq, content_type='text/plain')
 
-
+@cache_page(60 * 15)
 def ads(request):
     if not settings.DEBUG:
         path = os.path.join(settings.STATIC_ROOT,'ads.txt')
