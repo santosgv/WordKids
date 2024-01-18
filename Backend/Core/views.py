@@ -40,6 +40,11 @@ def about(request):
      categorias = Categoria.objects.all()
      return render(request,'about.html',{'categorias':categorias,})
 
+
+def politica(request):
+     categorias = Categoria.objects.all()
+     return render(request,'politica-de-privacidade.html',{'categorias':categorias,})
+
 def imprimir(request,id):
         try:
             image = Imagem.objects.get(id=id)

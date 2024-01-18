@@ -29,6 +29,17 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   
+.politica{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+.destaque{
+  font-weight: bold;
+  font-size: large;
+}
+
   .about{
     color: var(--branco);
   }
@@ -84,6 +95,31 @@
     padding-left: 0;
     list-style: none;
     justify-content: center;
+}
+
+.cookie-popup {
+  font-family: Arial, Helvetica, sans-serif;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+}
+
+#cookie-accept {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
 }
 
   @media (prefers-reduced-motion: no-preference) {

@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block 'title' %}
 Pagina inicial
 {% endblock %}
 
  {% block 'cabeca' %}
-<!-- adsense tags -->
 <meta name="google-adsense-account" content="ca-pub-1825430354660819">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825430354660819"
         crossorigin="anonymous"></script>
@@ -51,4 +51,6 @@ Pagina inicial
         </ul>
     </nav>
 </div>
+<script src="{% static 'js/script.js' %}"></script>
+
 {% endblock %}
