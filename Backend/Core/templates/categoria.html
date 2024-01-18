@@ -29,26 +29,16 @@ Por Categoria
     </div>
     <br>
     <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                {% if imagens.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?page=1"><img width="30" height="30" src="https://img.icons8.com/ios/50/000000/double-left.png" alt="double-left"/></a>
-            </li>
-            <a class="page-link" href="?page={{ imagens.previous_page_number }}"><img width="30" height="30" src="https://img.icons8.com/ios/50/000000/chevron-left.png" alt="chevron-left"/></a>
-            {% endif %}
-            </li>
-            <li class="page-item disabled"><a class="page-link" href="#">{{ imagens.number }}:{{ imagens.paginator.num_pages }}</a></li>
-            {% if imagens.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ imagens.next_page_number }}"><img width="30" height="30" src="https://img.icons8.com/ios/50/000000/chevron-right.png" alt="chevron-right"/></a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="?page={{ imagens.paginator.num_pages }}"><img width="30" height="30" src="https://img.icons8.com/ios/50/000000/double-right.png" alt="double-left"/></a>
-            </li>
-            {% endif %}
+        <ul class="pagination">
+            {% if imagens.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ imagens.previous_page_number }}">Voltar</a></li>
+          {% endif %}
+          <li class="page-item"><a class="page-link" href="#">{{ imagens.number }}:{{ imagens.paginator.num_pages }}</a></li>
+          {% if imagens.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ imagens.next_page_number }}">Proximo</a></li>
+          {% endif %}
         </ul>
-    </nav>
+      </nav>
 </div>
 <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
