@@ -1,6 +1,6 @@
 from django.http import FileResponse
 from .models import Imagem,Categoria
-from django.shortcuts import redirect, render
+from django.shortcuts import  render
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
@@ -9,40 +9,47 @@ import os
 from django.conf import settings
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.cache import cache_page
-from django.utils.decorators import method_decorator
+from django.core.cache import cache
 from PIL import Image
 
+def get_categorias():
+    cached_categorias = cache.get('all_categorias')
+    if cached_categorias is None:
+        categorias = Categoria.objects.values('id', 'nome')
+        cached_categorias = [{'id': cat['id'], 'nome': cat['nome']} for cat in categorias]
+        cache.set('all_categorias', cached_categorias, timeout=1800)
+    return cached_categorias
 
 
 def index(request):
-     categorias = Categoria.objects.all()
-     imagens = Imagem.objects.filter(destaque=True).all().order_by('-id')
+     categorias = get_categorias()
+     imagens = Imagem.objects.only('nome','arquivo','descricao').filter(destaque=True).all().order_by('-id')
      pagina = Paginator(imagens,25)
      pg_number = request.GET.get('page')
      imgs = pagina.get_page(pg_number)
      return render(request,'index.html',{'imagens':imgs,'categorias':categorias,})
 
 def categoria(request,nome):
-     categorias = Categoria.objects.all()
-     imagens = Imagem.objects.filter(categoria=nome).order_by('-id')
+     categorias = get_categorias()
+     imagens = Imagem.objects.only('nome','arquivo','descricao').filter(categoria=nome).order_by('-id')
      pagina = Paginator(imagens,25)
      pg_number = request.GET.get('page')
      imgs = pagina.get_page(pg_number)
      return render(request,'categoria.html',{'imagens':imgs,'categorias':categorias,})
 
 def desenho(request,nome):
-     categorias = Categoria.objects.all()
+     categorias = get_categorias()
      img = Imagem.objects.filter(nome=nome)
      return render(request,'desenho.html',{'img':img,'categorias':categorias,})
 
 @cache_page(60 * 15)
 def about(request):
-     categorias = Categoria.objects.all()
+     categorias = get_categorias()
      return render(request,'about.html',{'categorias':categorias,})
 
-
+@cache_page(60 * 15)
 def politica(request):
-     categorias = Categoria.objects.all()
+     categorias = get_categorias()
      return render(request,'politica-de-privacidade.html',{'categorias':categorias,})
 
 def imprimir(request,id):

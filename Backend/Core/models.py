@@ -10,7 +10,7 @@ class Categoria(models.Model):
 
 class Imagem(models.Model):
     nome = models.CharField(max_length=255)
-    categoria = models.ForeignKey(Categoria,null=True, blank=True, on_delete=models.DO_NOTHING)
+    categoria = models.ForeignKey(Categoria,null=True, blank=True, on_delete=models.DO_NOTHING, db_index=True)
     arquivo = models.ImageField(upload_to='Imagens')
     descricao = models.TextField(blank=True)
     data_upload = models.DateTimeField(auto_now_add=True)
