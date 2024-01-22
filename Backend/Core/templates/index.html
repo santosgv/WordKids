@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block 'title' %}
-Pagina inicial
+{% trans "Pagina Inicial" %}
 {% endblock %}
 
  {% block 'cabeca' %}
@@ -18,12 +19,12 @@ Pagina inicial
     <div class="row justify-content-center">
         {% for img in imagens %}
         <div class="card text-center carde" style="width: 20rem;">
-            <span class="badge badge-danger">Novo</span>
+            <span class="badge badge-danger">{% trans "Novo" %}</span>
             <img src="{{img.arquivo.url}}" class="card-img-top" alt="{{img.arquivo.url}}">
             <div class="card-body">
                 <h5 class="card-title">{{img.nome}}</h5>
                 <p class="card-text">{{img.descricao}}</p>
-                <a href="{% url 'Core:desenho' img.nome %}" class="btn btn-success">Ver</a>
+                <a href="{% url 'Core:desenho' img.nome %}" class="btn btn-success">{% trans "Ver" %}</a>
             </div>
         </div>
         {%endfor%}
@@ -32,11 +33,11 @@ Pagina inicial
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             {% if imagens.has_previous %}
-          <li class="page-item"><a class="page-link" href="?page={{ imagens.previous_page_number }}">Voltar</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ imagens.previous_page_number }}">{% trans "Voltar" %}</a></li>
           {% endif %}
           <li class="page-item"><a class="page-link" href="#">{{ imagens.number }}:{{ imagens.paginator.num_pages }}</a></li>
           {% if imagens.has_next %}
-          <li class="page-item"><a class="page-link" href="?page={{ imagens.next_page_number }}">Proximo</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ imagens.next_page_number }}">{% trans "Proximo" %}</a></li>
           {% endif %}
         </ul>
       </nav>

@@ -12,6 +12,7 @@ from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 from PIL import Image
 
+
 def get_categorias():
     cached_categorias = cache.get('all_categorias')
     if cached_categorias is None:

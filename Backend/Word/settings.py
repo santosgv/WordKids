@@ -30,7 +30,8 @@ INTERNAL_IPS = [
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [  
+    'clearcache',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -108,6 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
+LANGUAGES = (
+    ('pt', u'Português'),
+    ('en', u'Inglês'),
+)
+
 TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
@@ -133,6 +140,10 @@ MESSAGE_TAGS = {
     constants.WARNING: 'alert-warning',
 }
 
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
