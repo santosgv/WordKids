@@ -11,19 +11,19 @@ from django.http import JsonResponse,HttpResponse
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 from PIL import Image
+from django.db.models import Count
 
-
-def get_categorias():
-    cached_categorias = cache.get('all_categorias')
+def get_categorias_com_contagem():
+    cached_categorias = cache.get('all_categorias_com_contagem')
     if cached_categorias is None:
-        categorias = Categoria.objects.values('id', 'nome')
-        cached_categorias = [{'id': cat['id'], 'nome': cat['nome']} for cat in categorias]
-        cache.set('all_categorias', cached_categorias, timeout=1800)
+        categorias = Categoria.objects.annotate(quantidade=Count('imagem')).values('id', 'nome', 'quantidade')
+        cached_categorias = [{'id': cat['id'], 'nome': cat['nome'], 'quantidade': cat['quantidade']} for cat in categorias]
+        cache.set('all_categorias_com_contagem', cached_categorias, timeout=1800)
     return cached_categorias
 
 
 def index(request):
-     categorias = get_categorias()
+     categorias = get_categorias_com_contagem()
      imagens = Imagem.objects.only('nome','arquivo','descricao').filter(destaque=True).all().order_by('-id')
      pagina = Paginator(imagens,25)
      pg_number = request.GET.get('page')
@@ -31,7 +31,7 @@ def index(request):
      return render(request,'index.html',{'imagens':imgs,'categorias':categorias,})
 
 def categoria(request,nome):
-     categorias = get_categorias()
+     categorias = get_categorias_com_contagem()
      imagens = Imagem.objects.only('nome','arquivo','descricao').filter(categoria=nome).order_by('-id')
      pagina = Paginator(imagens,25)
      pg_number = request.GET.get('page')
@@ -39,13 +39,13 @@ def categoria(request,nome):
      return render(request,'categoria.html',{'imagens':imgs,'categorias':categorias,})
 
 def desenho(request,nome):
-     categorias = get_categorias()
+     categorias = get_categorias_com_contagem()
      img = Imagem.objects.filter(nome=nome)
      return render(request,'desenho.html',{'img':img,'categorias':categorias,})
 
 @cache_page(60 * 15)
 def about(request):
-     categorias = get_categorias()
+     categorias = get_categorias_com_contagem()
      return render(request,'about.html',{'categorias':categorias,})
 
 def contact(request):
@@ -69,11 +69,12 @@ def contact(request):
 
 @cache_page(60 * 15)
 def politica(request):
-     categorias = get_categorias()
+     categorias = get_categorias_com_contagem()
      return render(request,'politica-de-privacidade.html',{'categorias':categorias,})
+
 @cache_page(60 * 15)
 def transparencia(request):
-     categorias = get_categorias()
+     categorias = get_categorias_com_contagem()
      return render(request,'transparencia.html',{'categorias':categorias,})
 
 def imprimir(request,id):
@@ -120,7 +121,7 @@ def imprimir(request,id):
             response.status_code = 404
             return JsonResponse({"error": str(msg)}, status=response.status_code)
 
-
+@cache_page(60 * 15)
 def robots(request):
     if not settings.DEBUG:
         path = os.path.join(settings.STATIC_ROOT,'robots.txt')
