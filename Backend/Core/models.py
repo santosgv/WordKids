@@ -26,3 +26,13 @@ class Imagem(models.Model):
     
     class Meta:
         verbose_name_plural = "Desenhos"
+
+class Contato(models.Model):
+    Nome = models.CharField(max_length=100,null=True, blank=True)
+    Email = models.EmailField()
+    Telefone = models.IntegerField()
+    Mensagem = models.TextField(max_length=500)
+    Lido = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.Nome

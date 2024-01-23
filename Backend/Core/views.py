@@ -1,6 +1,6 @@
 from django.http import FileResponse
-from .models import Imagem,Categoria
-from django.shortcuts import  render
+from .models import Imagem,Categoria,Contato
+from django.shortcuts import  render,redirect
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
@@ -48,10 +48,33 @@ def about(request):
      categorias = get_categorias()
      return render(request,'about.html',{'categorias':categorias,})
 
-@cache_page(60 * 15)
+def contact(request):
+    if request.method == "GET":
+        status = request.GET.get('status')
+        return render(request,'contact.html',{'status':status})
+    else:
+        NOME = request.POST.get('name')
+        EMAIL = request.POST.get('email')
+        TELEFONE = request.POST.get('phone')
+        MENSAGEM = request.POST.get('message')
+        
+        new_contato= Contato(
+            Nome=NOME,
+            Email=EMAIL,
+            Telefone=TELEFONE,
+            Mensagem=MENSAGEM
+        )
+        new_contato.save()
+        return redirect("/contact/?status=1")
+
+
 def politica(request):
      categorias = get_categorias()
      return render(request,'politica-de-privacidade.html',{'categorias':categorias,})
+
+def transparencia(request):
+     categorias = get_categorias()
+     return render(request,'transparencia.html',{'categorias':categorias,})
 
 def imprimir(request,id):
         try:
@@ -97,7 +120,7 @@ def imprimir(request,id):
             response.status_code = 404
             return JsonResponse({"error": str(msg)}, status=response.status_code)
 
-@cache_page(60 * 15)
+
 def robots(request):
     if not settings.DEBUG:
         path = os.path.join(settings.STATIC_ROOT,'robots.txt')
