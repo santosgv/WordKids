@@ -67,11 +67,11 @@ def contact(request):
         new_contato.save()
         return redirect("/contact/?status=1")
 
-
+@cache_page(60 * 15)
 def politica(request):
      categorias = get_categorias()
      return render(request,'politica-de-privacidade.html',{'categorias':categorias,})
-
+@cache_page(60 * 15)
 def transparencia(request):
      categorias = get_categorias()
      return render(request,'transparencia.html',{'categorias':categorias,})
