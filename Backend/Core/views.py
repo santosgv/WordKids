@@ -144,3 +144,13 @@ def ads(request):
         path = os.path.join(settings.BASE_DIR,'templates/static/ads.txt')
         with open(path,'r') as arq:
             return HttpResponse(arq, content_type='text/plain')
+        
+def sitemap(request):
+    if not settings.DEBUG:
+        path = os.path.join(settings.STATIC_ROOT,'sitemap.xml')
+        with open(path,'r') as arq:
+            return HttpResponse(arq, content_type='application/xml')
+    else:
+        path = os.path.join(settings.BASE_DIR,'templates/static/sitemap.xml')
+        with open(path,'r') as arq:
+            return HttpResponse(arq, content_type='application/xml')

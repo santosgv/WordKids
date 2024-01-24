@@ -2,7 +2,7 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from Core.views import imprimir,index,robots,categoria,desenho,about,politica,ads,transparencia,contact
+from Core.views import imprimir,index,robots,categoria,desenho,about,politica,ads,transparencia,contact,sitemap
 
 
 app_name = 'Core'
@@ -17,6 +17,7 @@ urlpatterns = [
     path("contact/", view=contact, name='contact'),
     path('imprimir/<int:id>',view=imprimir, name='imprimir'),
     path('ads.txt',ads),
+    path('sitemap.xml',sitemap),
     path('robots.txt',robots),
 ]
 
