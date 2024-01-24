@@ -50,8 +50,9 @@ def about(request):
 
 def contact(request):
     if request.method == "GET":
+        categorias = get_categorias_com_contagem()
         status = request.GET.get('status')
-        return render(request,'contact.html',{'status':status})
+        return render(request,'contact.html',{'status':status,'categorias':categorias})
     else:
         NOME = request.POST.get('name')
         EMAIL = request.POST.get('email')
