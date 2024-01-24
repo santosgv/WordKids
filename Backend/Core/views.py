@@ -108,6 +108,7 @@ def imprimir(request,id):
 
             # Desenha a imagem na folha A4 mantendo a escala
             PDF.drawInlineImage(img, x_offset, y_offset, width=new_width, height=new_height)
+            PDF.drawString(120,2,'Visite https://mundocoloridokids.com.br para mais desenhos')
 
             PDF.showPage()
             PDF.save()
