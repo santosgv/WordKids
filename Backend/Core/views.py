@@ -1,6 +1,6 @@
 from django.http import FileResponse
 from .models import Imagem,Categoria,Contato
-from django.shortcuts import  render,redirect
+from django.shortcuts import  render,redirect,get_object_or_404
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
@@ -31,8 +31,9 @@ def index(request):
      return render(request,'index.html',{'imagens':imgs,'categorias':categorias,})
 
 def categoria(request,nome):
+     categoria_nome = get_object_or_404(Categoria, nome=nome)
      categorias = get_categorias_com_contagem()
-     imagens = Imagem.objects.only('nome','arquivo','descricao').filter(categoria=nome).order_by('-id')
+     imagens = Imagem.objects.only('nome','arquivo','descricao').filter(categoria=categoria_nome).order_by('-id')
      pagina = Paginator(imagens,25)
      pg_number = request.GET.get('page')
      imgs = pagina.get_page(pg_number)
@@ -144,7 +145,8 @@ def ads(request):
         path = os.path.join(settings.BASE_DIR,'templates/static/ads.txt')
         with open(path,'r') as arq:
             return HttpResponse(arq, content_type='text/plain')
-        
+
+@cache_page(60 * 15) 
 def sitemap(request):
     if not settings.DEBUG:
         path = os.path.join(settings.STATIC_ROOT,'sitemap.xml')
