@@ -2,11 +2,17 @@ User-agent: *
 Disallow: /admin
 Disallow: /README.txt
 User-agent: *
+User-agent: AdsBot-Google
 Allow: /$
 Allow: /
 Allow: /categoria/*
 Allow: /about
 Allow: /desenho/*
+Allow: /about/
+Allow: /contact/
+Allow: /politica/
+Allow: /transparencia/
+Sitemap: https://mundocoloridokids.com.br/sitemap.xml
 # CSS, JS, Images
 Allow: /static/js/scripts.js
 Allow: /static/css/styles.css
