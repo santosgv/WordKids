@@ -20,3 +20,4 @@ Allow: /static/assets/favicon.ico
 # Paths (no clean URLs)
 Allow: /media/Imagens/*.png
 Allow: /media/Imagens/*.jpg
+Allow: /media/Imagens/*.webp
