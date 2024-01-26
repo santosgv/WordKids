@@ -44,7 +44,7 @@ def desenho(request,nome):
      img = Imagem.objects.filter(nome=nome)
      return render(request,'desenho.html',{'img':img,'categorias':categorias,})
 
-@cache_page(60 * 15)
+@cache_page(60 * 100)
 def about(request):
      categorias = get_categorias_com_contagem()
      return render(request,'about.html',{'categorias':categorias,})
@@ -69,12 +69,12 @@ def contact(request):
         new_contato.save()
         return redirect("/contact/?status=1")
 
-@cache_page(60 * 15)
+@cache_page(60 * 100)
 def politica(request):
      categorias = get_categorias_com_contagem()
      return render(request,'politica-de-privacidade.html',{'categorias':categorias,})
 
-@cache_page(60 * 15)
+@cache_page(60 * 100)
 def transparencia(request):
      categorias = get_categorias_com_contagem()
      return render(request,'transparencia.html',{'categorias':categorias,})
@@ -124,7 +124,7 @@ def imprimir(request,id):
             response.status_code = 404
             return JsonResponse({"error": str(msg)}, status=response.status_code)
 
-@cache_page(60 * 15)
+@cache_page(60 * 100)
 def robots(request):
     if not settings.DEBUG:
         path = os.path.join(settings.STATIC_ROOT,'robots.txt')
@@ -135,7 +135,7 @@ def robots(request):
         with open(path,'r') as arq:
             return HttpResponse(arq, content_type='text/plain')
 
-@cache_page(60 * 15)
+@cache_page(60 * 100)
 def ads(request):
     if not settings.DEBUG:
         path = os.path.join(settings.STATIC_ROOT,'ads.txt')
@@ -146,7 +146,7 @@ def ads(request):
         with open(path,'r') as arq:
             return HttpResponse(arq, content_type='text/plain')
 
-@cache_page(60 * 15) 
+@cache_page(60 * 100) 
 def sitemap(request):
     if not settings.DEBUG:
         path = os.path.join(settings.STATIC_ROOT,'sitemap.xml')

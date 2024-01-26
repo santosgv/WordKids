@@ -1,4 +1,7 @@
 {% load static %}
+{% load cache %}
+
+{% cache 3600 cache_meta-1 %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,19 +12,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Mundo Colorido Kids" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="." />
+    <meta property="og:image" content="{% static 'img/logo.webp' %}" />
     <meta property="og:url" content="." />
     <meta property="og:site_name" content="Mundo Colorido Kids" />
     <meta property="og:description"
           content="Explore o mundo colorido da criatividade com desenhos para colorir do Mundo Colorido Kids. Deixe as crianças expressarem sua imaginação com nossa vasta coleção de desenhos divertidos e educativos." />
     <meta name="Title"
           content="Mundo Colorido Kids" />
+    {% endcache %}
+
     {% block 'cabeca' %}
     {% endblock %}
     <title>
         {% block 'title' %}
         {% endblock %}
     </title>
+    {% cache 3600 cache_meta %}
     <meta name="Author" content="Vitor Gomes" />
     <meta name="description"
           content="Explore o mundo colorido da criatividade com desenhos para colorir do Mundo Colorido Kids. Deixe as crianças expressarem sua imaginação com nossa vasta coleção de desenhos divertidos e educativos.">
@@ -43,6 +49,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link href="{% static 'css/css.css' %}" rel="stylesheet" />
     <script src="{% static 'js/cookes.js' %}"></script>
+    {% endcache %}
     <nav class="navbar navbar-expand-lg navbar-color" style="color:beige">
         <a class="navbar-brand" href="#"><img src="{% static 'img/logo.webp' %}" alt="logo" width="60" height="60"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,6 +70,7 @@
                         {% endfor %}
                     </div>
                 </li>
+                {% cache 3600 cache_menu %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Core:about'%}">Sobre Nós</a>
                 </li>
@@ -72,6 +80,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Core:politica'  %}">Política de Privacidade</a>
                 </li>
+                {% endcache %}
             </ul>
         </div>
         <form id="search-form" class="form-inline my-2 my-lg-0">
@@ -83,6 +92,8 @@
   <body>
     {% block 'body' %}
 	{% endblock %}
+
+    {% cache 3600 cache_footer %}
   <footer>
     <nav class="text-center p-4 navbar-color">
       <p>Copyright 2024 Todos os direitos reservados</p>
@@ -95,4 +106,5 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
   </body>
+  {% endcache %}
 </html>
