@@ -10,8 +10,8 @@ from django.http import FileResponse
 from django.http import JsonResponse
 
 
-@shared_task
-def imprimir(id):
+@shared_task(max_retries=5, default_retry_delay=1)
+def tastk_imprimir(id):
         try:
             image = Imagem.objects.get(id=id)
             buffer = io.BytesIO()

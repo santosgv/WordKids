@@ -7,7 +7,7 @@ from django.http import JsonResponse,HttpResponse
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 from django.db.models import Count
-from .tasks import imprimir
+from .tasks import tastk_imprimir
 
 def get_categorias_com_contagem():
     cached_categorias = cache.get('all_categorias_com_contagem')
@@ -76,13 +76,9 @@ def transparencia(request):
      return render(request,'transparencia.html',{'categorias':categorias,})
 
 def imprimir(request,id):
-        try:
-            imprimir.delay()
-            return response
-        except Exception as msg:
-            response = msg
-            response.status_code = 404
-            return JsonResponse({"error": str(msg)}, status=response.status_code)
+    tastk_imprimir.delay(id)
+    return None
+
 
 @cache_page(60 * 100)
 def robots(request):
