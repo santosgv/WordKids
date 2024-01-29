@@ -11,7 +11,7 @@ from django.http import JsonResponse
 
 
 @shared_task
-def imprimir(request,id):
+def imprimir(id):
         try:
             image = Imagem.objects.get(id=id)
             buffer = io.BytesIO()
