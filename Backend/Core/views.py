@@ -7,7 +7,7 @@ from django.http import JsonResponse,HttpResponse
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 from django.db.models import Count
-from .tasks import tastk_imprimir
+from django.contrib import sitemaps
 from PIL import Image
 import io
 from reportlab.pdfgen import canvas
@@ -146,13 +146,14 @@ def ads(request):
         with open(path,'r') as arq:
             return HttpResponse(arq, content_type='text/plain')
 
-@cache_page(60 * 100) 
-def sitemap(request):
-    if not settings.DEBUG:
-        path = os.path.join(settings.STATIC_ROOT,'sitemap.xml')
-        with open(path,'r') as arq:
-            return HttpResponse(arq, content_type='application/xml')
-    else:
-        path = os.path.join(settings.BASE_DIR,'templates/static/sitemap.xml')
-        with open(path,'r') as arq:
-            return HttpResponse(arq, content_type='application/xml')
+        
+class Sitemap(sitemaps.Sitemap):
+    i18n = True
+    changefreq ='monthly'
+    priority = 0.7
+
+    def items(self):
+        return Imagem.objects.all()        
+
+    def lastmod(self, obj):
+        return obj.data_upload

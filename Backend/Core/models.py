@@ -1,6 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.utils.safestring import mark_safe
+from django.urls import reverse
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=100)
@@ -16,6 +17,9 @@ class Imagem(models.Model):
     data_upload = models.DateTimeField(auto_now_add=True)
     afiliado= RichTextField(max_length=3000, null=True, blank=True)
     destaque= models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse('Core:desenho', args=[str(self.nome)]) 
 
     @mark_safe
     def icone(self):

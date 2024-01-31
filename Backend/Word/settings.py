@@ -38,11 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_celery_results',
-     'debug_toolbar',
+    'django.contrib.sitemaps',
+    'debug_toolbar',
     'rest_framework',
     'ckeditor',
-     'corsheaders',
+    'corsheaders',
     'Core',
 ]
 
