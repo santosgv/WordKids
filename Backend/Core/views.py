@@ -45,6 +45,16 @@ def desenho(request,nome):
      img = Imagem.objects.filter(nome=nome)
      return render(request,'desenho.html',{'img':img,'categorias':categorias,})
 
+
+def add_to_favorito(request, item):
+    favoritos = request.session.get('favoritos', [])
+
+    favoritos.append(item)
+
+    request.session['favoritos'] = favoritos
+
+    return render(request, 'favoritos.html', {'favoritos': favoritos})
+
 @cache_page(60 * 100)
 def about(request):
      categorias = get_categorias_com_contagem()

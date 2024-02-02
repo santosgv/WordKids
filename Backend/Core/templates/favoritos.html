@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}
+Favoritos
+{% endblock %}
+
+ {% block 'cabeca' %}
+<!-- adsense tags -->
+<meta name="google-adsense-account" content="ca-pub-1825430354660819">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825430354660819"
+        crossorigin="anonymous"></script>
+ {% endblock %}
+
+{% block 'body' %}
+<h1>Your Shopping Cart</h1>
+<ul>
+    {% for item in favoritos %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

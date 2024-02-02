@@ -23,6 +23,7 @@ Por Categoria
                 <h5 class="card-title">{{img.nome}}</h5>
                 <p class="card-text">{{img.descricao}}</p>
                 <a href="{% url 'Core:desenho' img.nome %}" class="btn btn-success">Ver</a>
+                <a href="{% url 'Core:add_to_favorito' img.nome %}" class="btn btn-success">fav</a>
             </div>
         </div>
         {%endfor%}
