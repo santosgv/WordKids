@@ -12,10 +12,15 @@ Favoritos
  {% endblock %}
 
 {% block 'body' %}
-<h1>Your Shopping Cart</h1>
-<ul>
-    {% for item in favoritos %}
-        <li>{{ item }}</li>
-    {% endfor %}
-</ul>
+<div class="row justify-content-center">
+
+    <div class="list-group fav">
+            <h1 style="color:#fff">Meus Favoritos</h1>
+        </a>
+        {% for item in favoritos %}
+        <a href="{% url 'Core:desenho' item %}" class="list-group-item list-group-item-action text-center">{{ item }}</a>
+        {% endfor %}
+      </div>
+
+</div>
 {% endblock %}

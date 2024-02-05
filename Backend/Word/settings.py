@@ -146,6 +146,8 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
 
+SESSION_COOKIE_AGE = 86400 # 24 horas * 60 minutos * 60 segundos
+
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 SESSION_FILE_PATH = os.path.join(BASE_DIR,'tmp/')
 
@@ -212,13 +214,13 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-#CACHES = {
-#    "default": {
-#        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-#        "LOCATION": 'redis://191.252.210.233:6379/0',
-#	    "TIMEOUT": 60,
-#    }
-#}
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": 'redis://191.252.210.233:6379/0',
+	    "TIMEOUT": 60,
+    }
+}
 
 #CELERY_BROKER_URL  ='redis://191.252.210.233:6379/0'
 #CELERY_ACCEPT_CONTENT= ['json']

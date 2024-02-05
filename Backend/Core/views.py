@@ -3,7 +3,7 @@ from django.shortcuts import  render,redirect,get_object_or_404
 from django.core.paginator import Paginator
 import os
 from django.conf import settings
-from django.http import JsonResponse,HttpResponse
+from django.http import HttpResponse
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 from django.db.models import Count
@@ -13,6 +13,8 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from django.http import FileResponse
+from django.contrib import messages
+from django.contrib.messages import constants
 
 def get_categorias_com_contagem():
     cached_categorias = cache.get('all_categorias_com_contagem')
@@ -48,12 +50,16 @@ def desenho(request,nome):
 
 def add_to_favorito(request, item):
     favoritos = request.session.get('favoritos', [])
-
     favoritos.append(item)
-
     request.session['favoritos'] = favoritos
+    messages.add_message(request, constants.SUCCESS, 'Adicionado aos Favoritos')
+    return HttpResponse(status=204)
 
-    return render(request, 'favoritos.html', {'favoritos': favoritos})
+def favoritos(request):
+    categorias = get_categorias_com_contagem()
+    favoritos = request.session.get('favoritos', [])
+    request.session['favoritos'] = favoritos
+    return render(request, 'favoritos.html', {'categorias':categorias,'favoritos': favoritos})
 
 @cache_page(60 * 100)
 def about(request):

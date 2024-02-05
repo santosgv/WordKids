@@ -14,7 +14,6 @@ Por Categoria
 
 {% block 'body' %}
 <div class="container-fluid">
-    <br>
     <div class="row justify-content-center">
         {% for img in imagens %}
         <div class="card text-center carde" style="width: 20rem;">
@@ -23,7 +22,7 @@ Por Categoria
                 <h5 class="card-title">{{img.nome}}</h5>
                 <p class="card-text">{{img.descricao}}</p>
                 <a href="{% url 'Core:desenho' img.nome %}" class="btn btn-success">Ver</a>
-                <a href="{% url 'Core:add_to_favorito' img.nome %}" class="btn btn-success">fav</a>
+                <a href="{% url 'Core:add_to_favorito' img.nome %}" id="btnAdicionar"><img width="40" height="40" src="https://img.icons8.com/color/48/filled-star--v1.png" alt="filled-star--v1"/></a>
             </div>
         </div>
         {%endfor%}
@@ -42,4 +41,12 @@ Por Categoria
       </nav>
 </div>
 <script src="{% static 'js/script.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var btnAdicionarFavoritos = document.getElementById('btnAdicionar');
+    btnAdicionarFavoritos.addEventListener('click', function() {
+        alert('Adicionado aos Favoritos');
+    });
+});
+</script>
 {% endblock %}
