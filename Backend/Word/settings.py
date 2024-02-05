@@ -25,6 +25,8 @@ ALLOWED_HOSTS = ['*']
 
 INTERNAL_IPS = [
     "127.0.0.1",
+    "https://mundocoloridokids.com.br/",
+    "http://154.49.246.53/"
 ]
 
 
