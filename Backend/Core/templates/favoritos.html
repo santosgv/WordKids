@@ -14,13 +14,28 @@ Favoritos
 {% block 'body' %}
 <div class="row justify-content-center">
 
-    <div class="list-group fav">
-            <h1 style="color:#fff">Meus Favoritos</h1>
-        </a>
+  
+
+<div class="list-group fav">
+        <h1 style="color:#fff">Meus Favoritos</h1>
         {% for item in favoritos %}
-        <a href="{% url 'Core:desenho' item %}" class="list-group-item list-group-item-action text-center">{{ item }}</a>
+      
+        <ul class="list-group">
+         <li class="list-group-item"><a class="card-link" href="{% url 'Core:desenho' item %}">{{ item }}</a> <a class="card-link" href="{% url 'Core:remove_from_favorito' item %}" id="btnremoveFavoritos"><img width="30" height="30" src="https://img.icons8.com/color/48/delete-sign--v1.png" alt="delete-sign--v1"/></a></li>
+        </ul>
+
         {% endfor %}
       </div>
 
 </div>
+
+<script src="{% static 'js/script.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var btnAdicionarFavoritos = document.getElementById('btnremoveFavoritos');
+    btnAdicionarFavoritos.addEventListener('click', function() {
+        alert('Removido dos Favoritos');
+    });
+});
+</script>
 {% endblock %}

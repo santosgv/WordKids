@@ -216,13 +216,13 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": 'redis://191.252.210.233:6379/0',
-	    "TIMEOUT": 60,
-    }
-}
+#CACHES = {
+#    "default": {
+#        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+#        "LOCATION": 'redis://191.252.210.233:6379/0',
+#	    "TIMEOUT": 60,
+#    }
+#}
 
 #CELERY_BROKER_URL  ='redis://191.252.210.233:6379/0'
 #CELERY_ACCEPT_CONTENT= ['json']

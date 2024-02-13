@@ -12,7 +12,7 @@ from PIL import Image
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
-from django.http import FileResponse
+from django.http import FileResponse,JsonResponse
 from django.contrib import messages
 from django.contrib.messages import constants
 
@@ -52,8 +52,16 @@ def add_to_favorito(request, item):
     favoritos = request.session.get('favoritos', [])
     favoritos.append(item)
     request.session['favoritos'] = favoritos
-    messages.add_message(request, constants.SUCCESS, 'Adicionado aos Favoritos')
     return HttpResponse(status=204)
+
+def remove_from_favorito(request, item):
+    favoritos = request.session.get('favoritos', [])
+    if item in favoritos:
+        favoritos.remove(item)
+        request.session['favoritos'] = favoritos
+        return redirect('/favoritos')
+    else:
+        return JsonResponse({'error': 'Item não encontrado nos favoritos'}, status=404)
 
 def favoritos(request):
     categorias = get_categorias_com_contagem()
