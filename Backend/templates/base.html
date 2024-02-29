@@ -95,6 +95,18 @@
 	{% endblock %}
 
     {% cache 3600 cache_footer %}
+    <div class="newsletter-subscribe mt-5 container">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center newsletter">Assine a nossa newsletter</h2>
+                <p class="text-center">. Fique por dentro das tendências, eventos e muito mais. Sua jornada começa aqui, com um clique. Inscreva-se agora e nunca perca uma atualização!" 🚀📨💡</p>
+            </div>
+            <form  action="" class="form-inline" method="post">{% csrf_token %} 
+                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Seu Email"></div>
+                <div class="form-group"><button class="btn btn-primary" type="submit">Se inscrever</button></div>
+            </form>
+        </div>
+    </div>
   <footer>
     <nav class="text-center p-4 navbar-color">
       <p>Copyright 2024 Todos os direitos reservados</p>
@@ -108,4 +120,84 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
   </body>
   {% endcache %}
+  <style>
+    .newsletter-subscribe {
+        color: #313437;
+        background-color: #ffffff;
+        padding: 55px 74px;
+        }
+
+        .newsletter-subscribe p {
+        color:var(--bage);
+        line-height: 1.5;
+        }
+
+        .newsletter-subscribe h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        line-height: 1.5;
+        padding-top: 0;
+        margin-top: 0;
+        color: inherit;
+        }
+
+.newsletter-subscribe .intro {
+        font-size: 16px;
+        max-width: 500px;
+        margin: 0 auto 25px;
+        }
+
+.newsletter-subscribe .intro p {
+        margin-bottom: 35px;
+}
+
+.newsletter-subscribe form {
+        justify-content: center;
+}
+
+.newsletter-subscribe form .form-control {
+            background: #eff1f4;
+            border: none;
+            border-radius: 3px;
+            box-shadow: none;
+            outline: none;
+            color: inherit;
+            text-indent: 9px;
+            height: 45px;
+            margin-right: 10px;
+            min-width: 250px;
+            }
+
+.newsletter-subscribe form .btn {
+            padding: 16px 32px;
+            border: none;
+            background: none;
+            box-shadow: none;
+            text-shadow: none;
+            opacity: 0.9;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 0.4px;
+            line-height: 1;
+            }
+
+.newsletter-subscribe form .btn:hover {
+            opacity: 1;
+            }
+
+.newsletter-subscribe form .btn:active {
+            transform: translateY(1px);
+            }
+
+.newsletter-subscribe form .btn-primary {
+            background-color: var(--azul-celeste) !important;
+            color: #fff;
+            outline: none !important;
+            }
+.newsletter {
+color: var(--azul-celeste) !important;
+}
+</style>
 </html>
