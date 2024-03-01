@@ -93,7 +93,15 @@
   <body>
     {% block 'body' %}
 	{% endblock %}
-
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-center alert {{message.tags}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
     {% cache 3600 cache_footer %}
     <div class="newsletter-subscribe mt-5 container">
         <div class="container">
@@ -101,7 +109,7 @@
                 <h2 class="text-center newsletter">Assine a nossa newsletter</h2>
                 <p class="text-center">. Fique por dentro das tendências, eventos e muito mais. Sua jornada começa aqui, com um clique. Inscreva-se agora e nunca perca uma atualização!" 🚀📨💡</p>
             </div>
-            <form  action="" class="form-inline" method="post">{% csrf_token %} 
+            <form  action="{% url 'Core:formulario' %}" class="form-inline" method="post">{% csrf_token %} 
                 <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Seu Email"></div>
                 <div class="form-group"><button class="btn btn-primary" type="submit">Se inscrever</button></div>
             </form>

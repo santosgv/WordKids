@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
-from Core.views import imprimir,index,robots,categoria,desenho,add_to_favorito,favoritos,about,politica,ads,transparencia,contact,remove_from_favorito,Sitemap
+from Core.views import imprimir,index,robots,categoria,desenho,add_to_favorito,favoritos,about,politica,ads,transparencia,contact,remove_from_favorito,formulario,unsubscriber,enviar_emeil,Sitemap
 
 
 app_name = 'Core'
@@ -25,6 +25,9 @@ urlpatterns = [
     path("contact/", view=contact, name='contact'),
     path('imprimir/<int:id>',view=imprimir, name='imprimir'),
     path('ads.txt',ads),
+    path('enviar_emeil/',view=enviar_emeil, name='enviar_emeil'),
+    path("formulario/", view=formulario, name='formulario'),
+    path('unsubscriber/<int:id>',view=unsubscriber, name='unsubscriber'),
     path('sitemap.xml',sitemap, {'sitemaps': sitemaps}),
     path('robots.txt',robots),
 ]

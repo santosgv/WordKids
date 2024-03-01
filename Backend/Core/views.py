@@ -1,4 +1,7 @@
-from .models import Imagem,Categoria,Contato
+import datetime
+from .models import Imagem,Categoria,Contato,Email
+from django.contrib.auth.decorators import login_required
+from .utils import email_html
 from django.shortcuts import  render,redirect,get_object_or_404
 from django.core.paginator import Paginator
 import os
@@ -15,6 +18,9 @@ from reportlab.lib.pagesizes import letter
 from django.http import FileResponse,JsonResponse
 from django.contrib import messages
 from django.contrib.messages import constants
+import logging
+
+logger = logging.getLogger('MyApp')
 
 def get_categorias_com_contagem():
     cached_categorias = cache.get('all_categorias_com_contagem')
@@ -23,7 +29,6 @@ def get_categorias_com_contagem():
         cached_categorias = [{'id': cat['id'], 'nome': cat['nome'], 'quantidade': cat['quantidade']} for cat in categorias]
         cache.set('all_categorias_com_contagem', cached_categorias, timeout=1800)
     return cached_categorias
-
 
 def index(request):
      categorias = get_categorias_com_contagem()
@@ -92,7 +97,8 @@ def contact(request):
             Mensagem=MENSAGEM
         )
         new_contato.save()
-        return redirect("/contact/?status=1")
+        messages.add_message(request, constants.SUCCESS, 'Enviado com sucesso')
+        return redirect("/")
 
 @cache_page(60 * 100)
 def politica(request):
@@ -170,7 +176,47 @@ def ads(request):
         with open(path,'r') as arq:
             return HttpResponse(arq, content_type='text/plain')
 
+
+def formulario(request):
+    if request.method =="POST":
+        email = request.POST.get('email')
+        valida = Email.objects.filter(email=email)
+        if valida.exists():
+            messages.add_message(request, constants.ERROR, 'Email Ja cadastrado')
+            logger.info(f'Email Ja cadastrado {email} '+str(datetime.datetime.now())+' horas!')
+            return redirect("/")
+        cadastrar = Email.objects.create(
+            email=email
+        )
+        cadastrar.save()
+        messages.add_message(request, constants.SUCCESS, 'Cadastrado com sucesso')
+        return redirect("/")
+    
+def unsubscriber(request,id):
+    email = Email.objects.get(id=id)
+    email.ativo =False
+    email.save()
+    return HttpResponse('Cancelado sua Inscriçao')
+
+@login_required(login_url='/admin/login/?next=/admin/') 
+def enviar_emeil(request):
+    try:
+        path_template = os.path.join(settings.BASE_DIR, 'Core/templates/emails/email.html')
+        base_url = request.build_absolute_uri('/')
+        emails = Email.objects.filter(ativo=True).all()
+        posts = Imagem.objects.only('nome','descricao').filter(destaque=True).all().order_by('-id')[:15]
+
+        for email in emails:
+            email_html(path_template, 'Novos Desenhos', [email,],posts=posts,email=email,base_url=base_url)
+            messages.add_message(request, constants.SUCCESS, 'Emais enviados com sucesso')
+            return redirect("/")
         
+    except Exception as msg:
+        messages.add_message(request, constants.ERROR, f'Nao foi possivel enviar os Emails consulte o arquivo de Log')
+        logger.critical(f'{msg} '+str(datetime.datetime.now())+' horas!')
+        return redirect("/")
+
+ 
 class Sitemap(sitemaps.Sitemap):
     i18n = True
     changefreq ='monthly'

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Imagem,Categoria,Contato
+from .models import Imagem,Categoria,Contato,Email
 
 
 
@@ -11,6 +11,7 @@ class ImagenAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Categoria)
+admin.site.register(Email)
 
 @admin.action(description="Marcar como Lido")
 def action_read_messenger(modeladmin,request,queryset):

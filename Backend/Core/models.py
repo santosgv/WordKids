@@ -40,3 +40,16 @@ class Contato(models.Model):
     
     def __str__(self):
         return self.Nome
+    
+    class Meta:
+        verbose_name_plural = "Contatos"
+
+class Email(models.Model):
+    email = models.EmailField()
+    ativo = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return self.email
+    
+    class Meta:
+        verbose_name_plural = "Newsletter"
